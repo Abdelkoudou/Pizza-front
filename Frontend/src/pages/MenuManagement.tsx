@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Eye } from 'lucide-react';
 import pizzaImage from '../pizza image.png';
 import SearchContainer from '../components/SearchContainer';
 import PizzaDetail from './PizzaDetail';
+import { getMenuPizzas, MenuPizza } from '../utils/pizzaData';
 
 interface MenuItem {
   id: number;
@@ -15,6 +16,13 @@ interface MenuItem {
 const MenuManagement: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('Pizza');
   const [selectedPizza, setSelectedPizza] = useState<MenuItem | null>(null);
+  const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
+
+  // Load pizza data on component mount
+  useEffect(() => {
+    const pizzas = getMenuPizzas(pizzaImage);
+    setMenuItems(pizzas);
+  }, []);
 
   const categories = [
     'Pizza',
@@ -25,51 +33,6 @@ const MenuManagement: React.FC = () => {
     'Gelatos',
     'Other Drinks',
     'Bakeries'
-  ];
-
-  const menuItems: MenuItem[] = [
-    {
-      id: 1,
-      name: 'Margherita',
-      sizes: ['25 cm', '30 cm', '35 cm'],
-      prices: ['350da', '450da', '650da'],
-      image: pizzaImage
-    },
-    {
-      id: 2,
-      name: 'Végétarienne',
-      sizes: ['25 cm', '30 cm', '35 cm'],
-      prices: ['350da', '450da', '650da'],
-      image: pizzaImage
-    },
-    {
-      id: 3,
-      name: '3 fromages',
-      sizes: ['25 cm', '30 cm', '35 cm'],
-      prices: ['350da', '450da', '650da'],
-      image: pizzaImage
-    },
-    {
-      id: 4,
-      name: 'Margherita',
-      sizes: ['25 cm', '30 cm', '35 cm'],
-      prices: ['350da', '450da', '650da'],
-      image: pizzaImage
-    },
-    {
-      id: 5,
-      name: 'Margherita',
-      sizes: ['25 cm', '30 cm', '35 cm'],
-      prices: ['350da', '450da', '650da'],
-      image: pizzaImage
-    },
-    {
-      id: 6,
-      name: 'Margherita',
-      sizes: ['25 cm', '30 cm', '35 cm'],
-      prices: ['350da', '450da', '650da'],
-      image: pizzaImage
-    }
   ];
 
   // Show pizza detail page if a pizza is selected
