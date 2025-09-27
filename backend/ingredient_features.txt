@@ -1,0 +1,391 @@
+dayofweek
+is_weekend
+month
+day
+temp_min_c
+temp_max_c
+humidity_pct
+wind_kph
+precip_mm
+precip_prob
+3 Fromage 25'_lag1
+3 Fromage 25'_diff
+3 Fromage 25'_roll3
+3 Fromage 30'_lag1
+3 Fromage 30'_diff
+3 Fromage 30'_roll3
+3 Fromage 35'_lag1
+3 Fromage 35'_diff
+3 Fromage 35'_roll3
+Anchois_lag1
+Anchois_diff
+Anchois_roll3
+Anchovis 25'_lag1
+Anchovis 25'_diff
+Anchovis 25'_roll3
+Anchovis 30'_lag1
+Anchovis 30'_diff
+Anchovis 30'_roll3
+Anchovis 35'_lag1
+Anchovis 35'_diff
+Anchovis 35'_roll3
+Bordure Fine_lag1
+Bordure Fine_diff
+Bordure Fine_roll3
+Bordure Traditionnelle_lag1
+Bordure Traditionnelle_diff
+Bordure Traditionnelle_roll3
+Capres_lag1
+Capres_diff
+Capres_roll3
+Champignons_lag1
+Champignons_diff
+Champignons_roll3
+Cheddar_lag1
+Cheddar_diff
+Cheddar_roll3
+Crevette 25'_lag1
+Crevette 25'_diff
+Crevette 25'_roll3
+Crevette 30'_lag1
+Crevette 30'_diff
+Crevette 30'_roll3
+Crevette 35'_lag1
+Crevette 35'_diff
+Crevette 35'_roll3
+Crevettes_lag1
+Crevettes_diff
+Crevettes_roll3
+Double Chicken 25'_lag1
+Double Chicken 25'_diff
+Double Chicken 25'_roll3
+Double Chicken 30'_lag1
+Double Chicken 30'_diff
+Double Chicken 30'_roll3
+Double Chicken 35'_lag1
+Double Chicken 35'_diff
+Double Chicken 35'_roll3
+Fromage Blanc_lag1
+Fromage Blanc_diff
+Fromage Blanc_roll3
+Fruits De Mer 25'_lag1
+Fruits De Mer 25'_diff
+Fruits De Mer 25'_roll3
+Fruits De Mer 30'_lag1
+Fruits De Mer 30'_diff
+Fruits De Mer 30'_roll3
+Fruits De Mer 35'_lag1
+Fruits De Mer 35'_diff
+Fruits De Mer 35'_roll3
+Fruits de Mer_lag1
+Fruits de Mer_diff
+Fruits de Mer_roll3
+Gruyere_lag1
+Gruyere_diff
+Gruyere_roll3
+HAM Cola 1L_lag1
+HAM Cola 1L_diff
+HAM Cola 1L_roll3
+HAM Cola 33CL_lag1
+HAM Cola 33CL_diff
+HAM Cola 33CL_roll3
+HAM Cola CAN 24CL_lag1
+HAM Cola CAN 24CL_diff
+HAM Cola CAN 24CL_roll3
+HAM La Blanche 1L_lag1
+HAM La Blanche 1L_diff
+HAM La Blanche 1L_roll3
+HAM La Blanche 33CL_lag1
+HAM La Blanche 33CL_diff
+HAM La Blanche 33CL_roll3
+HAM La Blanche CAN 24CL_lag1
+HAM La Blanche CAN 24CL_diff
+HAM La Blanche CAN 24CL_roll3
+HAM Selecto 1L_lag1
+HAM Selecto 1L_diff
+HAM Selecto 1L_roll3
+HAM Selecto 33CL_lag1
+HAM Selecto 33CL_diff
+HAM Selecto 33CL_roll3
+HAM Selecto CAN 24CL_lag1
+HAM Selecto CAN 24CL_diff
+HAM Selecto CAN 24CL_roll3
+Herbes de Provence_lag1
+Herbes de Provence_diff
+Herbes de Provence_roll3
+Huile d'Olive_lag1
+Huile d'Olive_diff
+Huile d'Olive_roll3
+IFRUIT Ananas-Orange 1L_lag1
+IFRUIT Ananas-Orange 1L_diff
+IFRUIT Ananas-Orange 1L_roll3
+IFRUIT Ananas-Orange 33CL_lag1
+IFRUIT Ananas-Orange 33CL_diff
+IFRUIT Ananas-Orange 33CL_roll3
+IFRUIT Mangue-Pomme 1L_lag1
+IFRUIT Mangue-Pomme 1L_diff
+IFRUIT Mangue-Pomme 1L_roll3
+IFRUIT Mangue-Pomme 33CL_lag1
+IFRUIT Mangue-Pomme 33CL_diff
+IFRUIT Mangue-Pomme 33CL_roll3
+IFRUIT Orange 1L_lag1
+IFRUIT Orange 1L_diff
+IFRUIT Orange 1L_roll3
+IFRUIT Orange 33CL_lag1
+IFRUIT Orange 33CL_diff
+IFRUIT Orange 33CL_roll3
+IFRUIT Orange-Citron-Carotte 1L_lag1
+IFRUIT Orange-Citron-Carotte 1L_diff
+IFRUIT Orange-Citron-Carotte 1L_roll3
+IFRUIT Orange-Citron-Carotte 33CL_lag1
+IFRUIT Orange-Citron-Carotte 33CL_diff
+IFRUIT Orange-Citron-Carotte 33CL_roll3
+IFRUIT Peche-Abricot-Orange-Pomme 1L_lag1
+IFRUIT Peche-Abricot-Orange-Pomme 1L_diff
+IFRUIT Peche-Abricot-Orange-Pomme 1L_roll3
+IFRUIT Peche-Abricot-Orange-Pomme 33CL_lag1
+IFRUIT Peche-Abricot-Orange-Pomme 33CL_diff
+IFRUIT Peche-Abricot-Orange-Pomme 33CL_roll3
+IFRUIT Pomme-Raisin-Mure-Carotte 1L_lag1
+IFRUIT Pomme-Raisin-Mure-Carotte 1L_diff
+IFRUIT Pomme-Raisin-Mure-Carotte 1L_roll3
+IFRUIT Pomme-Raisin-Mure-Carotte 33CL_lag1
+IFRUIT Pomme-Raisin-Mure-Carotte 33CL_diff
+IFRUIT Pomme-Raisin-Mure-Carotte 33CL_roll3
+Légumes Poulet 25'_lag1
+Légumes Poulet 25'_diff
+Légumes Poulet 25'_roll3
+Légumes Poulet 30'_lag1
+Légumes Poulet 30'_diff
+Légumes Poulet 30'_roll3
+Légumes Poulet 35'_lag1
+Légumes Poulet 35'_diff
+Légumes Poulet 35'_roll3
+Margharita 25'_lag1
+Margharita 25'_diff
+Margharita 25'_roll3
+Margharita 30'_lag1
+Margharita 30'_diff
+Margharita 30'_roll3
+Margharita 35'_lag1
+Margharita 35'_diff
+Margharita 35'_roll3
+Merguez_lag1
+Merguez_diff
+Merguez_roll3
+Merguez 25'_lag1
+Merguez 25'_diff
+Merguez 25'_roll3
+Merguez 30'_lag1
+Merguez 30'_diff
+Merguez 30'_roll3
+Merguez 35'_lag1
+Merguez 35'_diff
+Merguez 35'_roll3
+Mix De Viande 25'_lag1
+Mix De Viande 25'_diff
+Mix De Viande 25'_roll3
+Mix De Viande 30'_lag1
+Mix De Viande 30'_diff
+Mix De Viande 30'_roll3
+Mix De Viande 35'_lag1
+Mix De Viande 35'_diff
+Mix De Viande 35'_roll3
+Mojito 28CL_lag1
+Mojito 28CL_diff
+Mojito 28CL_roll3
+Mojito 48CL_lag1
+Mojito 48CL_diff
+Mojito 48CL_roll3
+Mozzarella(150)_lag1
+Mozzarella(150)_diff
+Mozzarella(150)_roll3
+Mozzarella(225)_lag1
+Mozzarella(225)_diff
+Mozzarella(225)_roll3
+Oignon Rouge_lag1
+Oignon Rouge_diff
+Oignon Rouge_roll3
+Olives Noires_lag1
+Olives Noires_diff
+Olives Noires_roll3
+Pepperoni & Légumes 25'_lag1
+Pepperoni & Légumes 25'_diff
+Pepperoni & Légumes 25'_roll3
+Pepperoni & Légumes 30'_lag1
+Pepperoni & Légumes 30'_diff
+Pepperoni & Légumes 30'_roll3
+Pepperoni & Légumes 35'_lag1
+Pepperoni & Légumes 35'_diff
+Pepperoni & Légumes 35'_roll3
+Pepperoni 25'_lag1
+Pepperoni 25'_diff
+Pepperoni 25'_roll3
+Pepperoni 30'_lag1
+Pepperoni 30'_diff
+Pepperoni 30'_roll3
+Pepperoni 35'_lag1
+Pepperoni 35'_diff
+Pepperoni 35'_roll3
+Poivrons_lag1
+Poivrons_diff
+Poivrons_roll3
+Poulet Barbecue 25'_lag1
+Poulet Barbecue 25'_diff
+Poulet Barbecue 25'_roll3
+Poulet Barbecue 30'_lag1
+Poulet Barbecue 30'_diff
+Poulet Barbecue 30'_roll3
+Poulet Barbecue 35'_lag1
+Poulet Barbecue 35'_diff
+Poulet Barbecue 35'_roll3
+Poulet(100)_lag1
+Poulet(100)_diff
+Poulet(100)_roll3
+Poulet(50)_lag1
+Poulet(50)_diff
+Poulet(50)_roll3
+ROUIBA Ananas 1L_lag1
+ROUIBA Ananas 1L_diff
+ROUIBA Ananas 1L_roll3
+ROUIBA Ananas 20CL_lag1
+ROUIBA Ananas 20CL_diff
+ROUIBA Ananas 20CL_roll3
+ROUIBA Cocktail 1L_lag1
+ROUIBA Cocktail 1L_diff
+ROUIBA Cocktail 1L_roll3
+ROUIBA Cocktail 20CL_lag1
+ROUIBA Cocktail 20CL_diff
+ROUIBA Cocktail 20CL_roll3
+Red Light 28CL_lag1
+Red Light 28CL_diff
+Red Light 28CL_roll3
+Red Light 48CL_lag1
+Red Light 48CL_diff
+Red Light 48CL_roll3
+SLIM Ananas 1L_lag1
+SLIM Ananas 1L_diff
+SLIM Ananas 1L_roll3
+SLIM Ananas 33CL_lag1
+SLIM Ananas 33CL_diff
+SLIM Ananas 33CL_roll3
+SLIM Ananas CAN 24CL_lag1
+SLIM Ananas CAN 24CL_diff
+SLIM Ananas CAN 24CL_roll3
+SLIM Citron 1L_lag1
+SLIM Citron 1L_diff
+SLIM Citron 1L_roll3
+SLIM Citron 33CL_lag1
+SLIM Citron 33CL_diff
+SLIM Citron 33CL_roll3
+SLIM Citron CAN 24CL_lag1
+SLIM Citron CAN 24CL_diff
+SLIM Citron CAN 24CL_roll3
+SLIM Fraise 1L_lag1
+SLIM Fraise 1L_diff
+SLIM Fraise 1L_roll3
+SLIM Fraise 33CL_lag1
+SLIM Fraise 33CL_diff
+SLIM Fraise 33CL_roll3
+SLIM Litchi 1L_lag1
+SLIM Litchi 1L_diff
+SLIM Litchi 1L_roll3
+SLIM Litchi 33CL_lag1
+SLIM Litchi 33CL_diff
+SLIM Litchi 33CL_roll3
+SLIM Litchi CAN 24CL_lag1
+SLIM Litchi CAN 24CL_diff
+SLIM Litchi CAN 24CL_roll3
+SLIM Orange 1L_lag1
+SLIM Orange 1L_diff
+SLIM Orange 1L_roll3
+SLIM Orange 33CL_lag1
+SLIM Orange 33CL_diff
+SLIM Orange 33CL_roll3
+SLIM Orange CAN 24CL_lag1
+SLIM Orange CAN 24CL_diff
+SLIM Orange CAN 24CL_roll3
+SLIM Pomme 1L_lag1
+SLIM Pomme 1L_diff
+SLIM Pomme 1L_roll3
+SLIM Pomme 33CL_lag1
+SLIM Pomme 33CL_diff
+SLIM Pomme 33CL_roll3
+SLIM Pomme CAN 24CL_lag1
+SLIM Pomme CAN 24CL_diff
+SLIM Pomme CAN 24CL_roll3
+Salamé_lag1
+Salamé_diff
+Salamé_roll3
+Sauce Barbecue_lag1
+Sauce Barbecue_diff
+Sauce Barbecue_roll3
+Sauce Crème_lag1
+Sauce Crème_diff
+Sauce Crème_roll3
+Sauce Tomate_lag1
+Sauce Tomate_diff
+Sauce Tomate_roll3
+Thon_lag1
+Thon_diff
+Thon_roll3
+Tomates en Dés(40)_lag1
+Tomates en Dés(40)_diff
+Tomates en Dés(40)_roll3
+Tomates en dés(75)_lag1
+Tomates en dés(75)_diff
+Tomates en dés(75)_roll3
+Tropical 28CL_lag1
+Tropical 28CL_diff
+Tropical 28CL_roll3
+Tropical 48CL_lag1
+Tropical 48CL_diff
+Tropical 48CL_roll3
+Tuna 25'_lag1
+Tuna 25'_diff
+Tuna 25'_roll3
+Tuna 30'_lag1
+Tuna 30'_diff
+Tuna 30'_roll3
+Tuna 35'_lag1
+Tuna 35'_diff
+Tuna 35'_roll3
+Viande Hachée 25'_lag1
+Viande Hachée 25'_diff
+Viande Hachée 25'_roll3
+Viande Hachée 30'_lag1
+Viande Hachée 30'_diff
+Viande Hachée 30'_roll3
+Viande Hachée 35'_lag1
+Viande Hachée 35'_diff
+Viande Hachée 35'_roll3
+Viande Hachée(50)_lag1
+Viande Hachée(50)_diff
+Viande Hachée(50)_roll3
+Viande Hachée(75)_lag1
+Viande Hachée(75)_diff
+Viande Hachée(75)_roll3
+Végirarienne Champinions 25'_lag1
+Végirarienne Champinions 25'_diff
+Végirarienne Champinions 25'_roll3
+Végirarienne Champinions 30'_lag1
+Végirarienne Champinions 30'_diff
+Végirarienne Champinions 30'_roll3
+Végirarienne Champinions 35'_lag1
+Végirarienne Champinions 35'_diff
+Végirarienne Champinions 35'_roll3
+Végitarienne 25'_lag1
+Végitarienne 25'_diff
+Végitarienne 25'_roll3
+Végitarienne 30'_lag1
+Végitarienne 30'_diff
+Végitarienne 30'_roll3
+Végitarienne 35'_lag1
+Végitarienne 35'_diff
+Végitarienne 35'_roll3
+pepperoni(10)_lag1
+pepperoni(10)_diff
+pepperoni(10)_roll3
+pepperoni(14)_lag1
+pepperoni(14)_diff
+pepperoni(14)_roll3

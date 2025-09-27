@@ -1,0 +1,51 @@
+{"_id":"68b35fc2868d406af5688772","name":"Pizza Margherita","category":"Pizzas","workflow":"PIZZA","basePrice":350,"hasSize":false,"hasToppings":true}
+{"_id":"68b35fc2868d406af5688794","name":"Pizza 3 Fromages","category":"Pizzas","workflow":"PIZZA","basePrice":500,"hasSize":false,"hasToppings":true}
+{"_id":"68b35fc2868d406af56887b5","name":"Pizza Végétarienne","category":"Pizzas","workflow":"PIZZA","basePrice":350,"hasSize":false,"hasToppings":true}
+{"_id":"68b35fc2868d406af56887d6","name":"Pizza Végétarienne Champignions","category":"Pizzas","workflow":"PIZZA","basePrice":450,"hasSize":false,"hasToppings":true}
+{"_id":"68b35fc2868d406af56887f7","name":"Pizza Légumes Poulet","category":"Pizzas","workflow":"PIZZA","basePrice":500,"hasSize":false,"hasToppings":true}
+{"_id":"68b35fc2868d406af5688818","name":"Pizza Poulet Barbecue","category":"Pizzas","workflow":"PIZZA","basePrice":450,"hasSize":false,"hasToppings":true}
+{"_id":"68b35fc2868d406af5688839","name":"Pizza Chicken","category":"Pizzas","workflow":"PIZZA","basePrice":600,"hasSize":false,"hasToppings":true}
+{"_id":"68b35fc2868d406af568885b","name":"Pizza Mix De Viande","category":"Pizzas","workflow":"PIZZA","basePrice":700,"hasSize":false,"hasToppings":true}
+{"_id":"68b35fc2868d406af568887c","name":"Pizza au pepperoni","category":"Pizzas","workflow":"PIZZA","basePrice":600,"hasSize":false,"hasToppings":true}
+{"_id":"68b35fc2868d406af568889e","name":"Pizza Pepperoni & Tomates","category":"Pizzas","workflow":"PIZZA","basePrice":650,"hasSize":false,"hasToppings":true}
+{"_id":"68b35fc2868d406af56888bf","name":"Pizza Merguez","category":"Pizzas","workflow":"PIZZA","basePrice":400,"hasSize":false,"hasToppings":true}
+{"_id":"68b35fc2868d406af56888e0","name":"Pizza Viande Hachée","category":"Pizzas","workflow":"PIZZA","basePrice":500,"hasSize":false,"hasToppings":true}
+{"_id":"68b35fc2868d406af5688902","name":"Pizza Crevettes","category":"Pizzas","workflow":"PIZZA","basePrice":600,"hasSize":false,"hasToppings":true}
+{"_id":"68b35fc2868d406af5688923","name":"Pizza Fruits De Mer","category":"Pizzas","workflow":"PIZZA","basePrice":700,"hasSize":false,"hasToppings":true}
+{"_id":"68b35fc2868d406af5688944","name":"Pizza Anchovy","category":"Pizzas","workflow":"PIZZA","basePrice":500,"hasSize":false,"hasToppings":true}
+{"_id":"68b35fc2868d406af5688965","name":"Pizza Tuna","category":"Pizzas","workflow":"PIZZA","basePrice":450,"hasSize":false,"hasToppings":true}
+{"_id":"68b35fc2868d406af5688986","name":"Hamoud Boualem","category":"Soft Drinks","workflow":"BAR","basePrice":0,"hasSize":true,"hasToppings":false}
+{"_id":"68b35fc2868d406af56889a1","name":"Jus Ifruit","category":"Soft Drinks","workflow":"BAR","basePrice":0,"hasSize":true,"hasToppings":false}
+{"_id":"68b35fc2868d406af56889ae","name":"jus Rouiba","category":"Soft Drinks","workflow":"BAR","basePrice":0,"hasSize":true,"hasToppings":false}
+{"_id":"68b35fc2868d406af56889b3","name":"Ngaous","category":"Soft Drinks","workflow":"BAR","basePrice":0,"hasSize":false,"hasToppings":false}
+{"_id":"68b35fc2868d406af56889b4","name":"Jus nature","category":"Soft Drinks","workflow":"BAR","basePrice":0,"hasSize":true,"hasToppings":false}
+{"_id":"68b35fc2868d406af56889bb","name":"Ifri Pétillante","category":"Other Drinks","workflow":"BAR","basePrice":60,"hasSize":false,"hasToppings":false}
+{"_id":"68b35fc2868d406af56889bc","name":"Eau Minerale","category":"Other Drinks","workflow":"BAR","basePrice":0,"hasSize":false,"hasToppings":true}
+{"_id":"68b35fc2868d406af56889c0","name":"Fondant au chocolat","category":"Desserts","workflow":"OTHER","basePrice":250,"hasSize":false,"hasToppings":false}
+{"_id":"68b35fc2868d406af56889c1","name":"Cheesecake Original","category":"Desserts","workflow":"OTHER","basePrice":350,"hasSize":false,"hasToppings":false}
+{"_id":"68b35fc2868d406af56889c2","name":"Cheese cake Chocolat","category":"Desserts","workflow":"OTHER","basePrice":350,"hasSize":false,"hasToppings":false}
+{"_id":"68b35fc2868d406af56889c3","name":"Cheese cups Oréo","category":"Desserts","workflow":"OTHER","basePrice":300,"hasSize":false,"hasToppings":false}
+{"_id":"68b35fc2868d406af56889c4","name":"Cheese cups Pistache","category":"Desserts","workflow":"OTHER","basePrice":400,"hasSize":false,"hasToppings":false}
+{"_id":"68b35fc2868d406af56889c5","name":"Cheese cups Lotus","category":"Desserts","workflow":"OTHER","basePrice":350,"hasSize":false,"hasToppings":false}
+{"_id":"68b35fc2868d406af56889c6","name":"Cheese cups Fraise","category":"Desserts","workflow":"OTHER","basePrice":300,"hasSize":false,"hasToppings":false}
+{"_id":"68b35fc2868d406af56889c7","name":"Mousse Chocolat","category":"Desserts","workflow":"OTHER","basePrice":200,"hasSize":false,"hasToppings":false}
+{"_id":"68b35fc2868d406af56889c8","name":"Tiramisu cacao","category":"Desserts","workflow":"OTHER","basePrice":250,"hasSize":false,"hasToppings":false}
+{"_id":"68b35fc2868d406af56889c9","name":"Tiramisu caramel","category":"Desserts","workflow":"OTHER","basePrice":250,"hasSize":false,"hasToppings":false}
+{"_id":"68b35fc2868d406af56889ca","name":"Salade César","category":"Salades","workflow":"OTHER","basePrice":350,"hasSize":false,"hasToppings":false}
+{"_id":"68b35fc2868d406af56889cb","name":"Salade au Thon","category":"Salades","workflow":"OTHER","basePrice":350,"hasSize":false,"hasToppings":false}
+{"_id":"68b35fc2868d406af56889cc","name":"Salade Greek","category":"Salades","workflow":"OTHER","basePrice":300,"hasSize":false,"hasToppings":false}
+{"_id":"68b35fc2868d406af56889cd","name":"Café court","category":"Hot Drinks","workflow":"BAR","basePrice":50,"hasSize":false,"hasToppings":false}
+{"_id":"68b35fc2868d406af56889ce","name":"Café long","category":"Hot Drinks","workflow":"BAR","basePrice":80,"hasSize":false,"hasToppings":false}
+{"_id":"68b35fc2868d406af56889cf","name":"Double espresso","category":"Hot Drinks","workflow":"BAR","basePrice":100,"hasSize":false,"hasToppings":false}
+{"_id":"68b35fc2868d406af56889d0","name":"Cappuccino","category":"Hot Drinks","workflow":"BAR","basePrice":150,"hasSize":false,"hasToppings":false}
+{"_id":"68b35fc2868d406af56889d1","name":"Macchiato","category":"Hot Drinks","workflow":"BAR","basePrice":150,"hasSize":false,"hasToppings":false}
+{"_id":"68b35fc2868d406af56889d2","name":"Café crème","category":"Hot Drinks","workflow":"BAR","basePrice":150,"hasSize":false,"hasToppings":false}
+{"_id":"68b35fc2868d406af56889d3","name":"Café au lait","category":"Hot Drinks","workflow":"BAR","basePrice":100,"hasSize":false,"hasToppings":false}
+{"_id":"68b35fc2868d406af56889d4","name":"Chocolat au lait","category":"Hot Drinks","workflow":"BAR","basePrice":150,"hasSize":false,"hasToppings":false}
+{"_id":"68b35fc2868d406af56889d5","name":"Chocolat chaud","category":"Hot Drinks","workflow":"BAR","basePrice":150,"hasSize":false,"hasToppings":false}
+{"_id":"68b35fc2868d406af56889d6","name":"Lait","category":"Hot Drinks","workflow":"BAR","basePrice":60,"hasSize":false,"hasToppings":false}
+{"_id":"68b35fc2868d406af56889d7","name":"Thé","category":"Hot Drinks","workflow":"BAR","basePrice":0,"hasSize":false,"hasToppings":true}
+{"_id":"68b35fc2868d406af56889dd","name":"Gelato","category":"Gelato","workflow":"OTHER","basePrice":0,"hasSize":false,"hasToppings":true}
+{"_id":"68b35fc2868d406af5688a23","name":"Croissant","category":"Bakery","workflow":"OTHER","basePrice":30,"hasSize":false,"hasToppings":false}
+{"_id":"68b35fc2868d406af5688a24","name":"Pain au chocolat","category":"Bakery","workflow":"OTHER","basePrice":30,"hasSize":false,"hasToppings":false}
+{"_id":"68b35fc2868d406af5688a25","name":"Chausson","category":"Bakery","workflow":"OTHER","basePrice":50,"hasSize":false,"hasToppings":false}

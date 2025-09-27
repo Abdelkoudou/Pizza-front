@@ -1,0 +1,640 @@
+http://127.0.0.1:8001/staff-assignment post
+
+
+data to send
+{
+  
+}
+
+
+response
+
+{
+    "forecast_info": {
+        "forecast_date": "2025-09-27",
+        "forecast_day": "Saturday, September 27, 2025",
+        "generated_at": "2025-09-27T13:24:12.611934"
+    },
+    "weather_context": {
+        "date": "2025-09-27",
+        "temp_min_c": 14.3,
+        "temp_max_c": 22.8,
+        "humidity_pct": 71,
+        "wind_kph": 18.4,
+        "precip_mm": 0.27,
+        "precip_prob": 88
+    },
+    "morning_shift": {
+        "shift_hours": "08:00 - 16:00",
+        "predicted_orders": 238,
+        "staffing_needs": {
+            "dough": 2,
+            "topping": 2,
+            "cashier": 2,
+            "waiter": 3,
+            "delivery": 2,
+            "packaging": 2,
+            "bar": 2
+        },
+        "staff_assignment": {
+            "dough": [
+                "Youssef",
+                "Karim"
+            ],
+            "topping": [
+                "Khaled",
+                "Hassan"
+            ],
+            "cashier": [
+                "Nour",
+                "Amel"
+            ],
+            "waiter": [
+                "Rania",
+                "Samir",
+                "Salima"
+            ],
+            "delivery": [
+                "Salem",
+                "Nadia"
+            ],
+            "packaging": [
+                "Ahmed",
+                "Leila"
+            ],
+            "bar": [
+                "Zineb",
+                "Omar"
+            ]
+        },
+        "estimated_cost": 37990.0,
+        "forbidden_staff": []
+    },
+    "night_shift": {
+        "shift_hours": "17:00 - 00:00",
+        "predicted_orders": 222,
+        "staffing_needs": {
+            "dough": 2,
+            "topping": 2,
+            "cashier": 2,
+            "waiter": 3,
+            "delivery": 2,
+            "packaging": 2,
+            "bar": 2
+        },
+        "staff_assignment": {
+            "dough": [
+                "Youssef",
+                "Karim"
+            ],
+            "topping": [
+                "Khaled",
+                "Hassan"
+            ],
+            "cashier": [
+                "Nour",
+                "Amel"
+            ],
+            "waiter": [
+                "Rania",
+                "Samir",
+                "Salima"
+            ],
+            "delivery": [
+                "Salem",
+                "Nadia"
+            ],
+            "packaging": [
+                "Ahmed",
+                "Leila"
+            ],
+            "bar": [
+                "Zineb",
+                "Omar"
+            ]
+        },
+        "estimated_cost": 37990.0,
+        "forbidden_staff": []
+    },
+    "total_daily_cost": 75980.0
+}
+
+
+
+http://127.0.0.1:8001/staffing-config get
+
+data to send
+{
+}
+
+
+response 
+
+{
+    "weather_context": {
+        "date": "2025-09-27",
+        "temp_min_c": 14.3,
+        "temp_max_c": 22.8,
+        "humidity_pct": 71,
+        "wind_kph": 18.4,
+        "precip_mm": 0.27,
+        "precip_prob": 88
+    },
+    "morning_shift": {
+        "predicted_orders": 238,
+        "staffing_config": {
+            "dough": 2,
+            "topping": 2,
+            "cashier": 2,
+            "waiter": 3,
+            "delivery": 2,
+            "packaging": 2,
+            "bar": 2
+        },
+        "shift_hours": "08:00 - 16:00"
+    },
+    "night_shift": {
+        "predicted_orders": 222,
+        "staffing_config": {
+            "dough": 2,
+            "topping": 2,
+            "cashier": 2,
+            "waiter": 3,
+            "delivery": 2,
+            "packaging": 2,
+            "bar": 2
+        },
+        "shift_hours": "17:00 - 00:00"
+    },
+    "forecast_info": {
+        "forecast_date": "2025-09-27",
+        "forecast_day": "Saturday, September 27, 2025",
+        "generated_at": "2025-09-27T13:26:39.003890"
+    }
+}
+
+
+
+http://127.0.0.1:8000/predict  (it's hourly) post
+
+
+data 
+{
+  "timestamps": ["2022-08-28T18:00:00Z"],
+  "context": [
+    {
+      "date": "2028-08-28",
+      "temp_min_c": 18,
+      "temp_max_c": 28,
+      "humidity_pct": 60,
+      "wind_kph": 12,
+      "precip_mm": 0.2,
+      "precip_prob": 30
+    }
+  ]
+}
+
+
+[
+    {
+        "hour": "2022-08-28T18:00:00+00:00",
+        "predicted_orders": 30.396625518798828
+    }
+]}
+
+
+response 
+
+[
+    {
+        "hour": "2025-08-28T18:00:00+00:00",
+        "predicted_orders": 28.897789001464844
+    }
+]
+
+
+
+http://127.0.0.1:8000/predict_daily post
+
+
+data
+
+{
+  "dates": ["2025-09-28"],
+  "context": [
+    {
+      "date": "2028-09-28",
+      "temp_min_c": 18,
+      "temp_max_c": 30,
+      "humidity_pct": 50,
+      "wind_kph": 12,
+      "precip_mm": 0.1,
+      "precip_prob": 20
+    }
+  ]
+}
+
+
+response
+
+[
+    {
+        "date": "2025-09-28T00:00:00",
+        "predicted_orders": 148.72265625
+    }
+]
+
+
+http://127.0.0.1:8000/predict_weekly post
+
+
+data 
+
+{
+  "weeks": [
+    "2026-09-28"
+  ]
+}
+response
+[
+    {
+        "week": "2026-09-28T00:00:00",
+        "predicted_orders": 985.874755859375
+    }
+]
+
+
+
+http://127.0.0.1:8000/predict_weekly_ingredients  post 
+
+data
+
+{
+  "weeks": [
+    "2026-09-28"
+  ]
+}
+
+response
+
+
+[
+    {
+        "week": "2026-09-28",
+        "predictions": {
+            "3 Fromage 25'": 4.265324115753174,
+            "3 Fromage 30'": 2.691188335418701,
+            "3 Fromage 35'": 2.559126138687134,
+            "Anchois": 67.19426727294922,
+            "Anchovis 25'": 3.6119272708892822,
+            "Anchovis 30'": 5.2977447509765625,
+            "Anchovis 35'": 3.885032892227173,
+            "Bordure Fine": 68.6061782836914,
+            "Bordure Traditionnelle": 63.95009231567383,
+            "Capres": 65.71957397460938,
+            "Champignons": 64.71885681152344,
+            "Cheddar": 66.95111846923828,
+            "Crevette 25'": 4.108410358428955,
+            "Crevette 30'": 3.9978034496307373,
+            "Crevette 35'": 3.5496909618377686,
+            "Crevettes": 66.53389739990234,
+            "Double Chicken 25'": 3.4093546867370605,
+            "Double Chicken 30'": 3.6056485176086426,
+            "Double Chicken 35'": 2.8922436237335205,
+            "Fromage Blanc": 68.5137939453125,
+            "Fruits De Mer 25'": 4.56032657623291,
+            "Fruits De Mer 30'": 3.3344030380249023,
+            "Fruits De Mer 35'": 3.8083949089050293,
+            "Fruits de Mer": 67.23436737060547,
+            "Gruyere": 68.31139373779297,
+            "HAM Cola 1L": 1.7838585376739502,
+            "HAM Cola 33CL": 1.6950714588165283,
+            "HAM Cola CAN 24CL": 1.89162015914917,
+            "HAM La Blanche 1L": 1.342674970626831,
+            "HAM La Blanche 33CL": 2.3285107612609863,
+            "HAM La Blanche CAN 24CL": 0.9982201457023621,
+            "HAM Selecto 1L": 2.402163028717041,
+            "HAM Selecto 33CL": 1.5348848104476929,
+            "HAM Selecto CAN 24CL": 1.7507519721984863,
+            "Herbes de Provence": 68.1149673461914,
+            "Huile d'Olive": 66.77983093261719,
+            "IFRUIT Ananas-Orange 1L": 8.153960227966309,
+            "IFRUIT Ananas-Orange 33CL": 6.3591156005859375,
+            "IFRUIT Mangue-Pomme 1L": 4.914343357086182,
+            "IFRUIT Mangue-Pomme 33CL": 7.907252788543701,
+            "IFRUIT Orange 1L": 5.759083271026611,
+            "IFRUIT Orange 33CL": 7.791841983795166,
+            "IFRUIT Orange-Citron-Carotte 1L": 6.4380364418029785,
+            "IFRUIT Orange-Citron-Carotte 33CL": 5.05433988571167,
+            "IFRUIT Peche-Abricot-Orange-Pomme 1L": 6.872661590576172,
+            "IFRUIT Peche-Abricot-Orange-Pomme 33CL": 5.995577812194824,
+            "IFRUIT Pomme-Raisin-Mure-Carotte 1L": 4.605830669403076,
+            "IFRUIT Pomme-Raisin-Mure-Carotte 33CL": 4.87138032913208,
+            "Légumes Poulet 25'": 2.5272812843322754,
+            "Légumes Poulet 30'": 4.164805889129639,
+            "Légumes Poulet 35'": 4.877040386199951,
+            "Margharita 25'": 3.3754665851593018,
+            "Margharita 30'": 3.791940689086914,
+            "Margharita 35'": 3.2522261142730713,
+            "Merguez": 66.10869598388672,
+            "Merguez 25'": 3.3790905475616455,
+            "Merguez 30'": 3.9124999046325684,
+            "Merguez 35'": 3.2886621952056885,
+            "Mix De Viande 25'": 4.215246200561523,
+            "Mix De Viande 30'": 4.527246475219727,
+            "Mix De Viande 35'": 3.8035595417022705,
+            "Mojito 28CL": 10.618268013000488,
+            "Mojito 48CL": 12.666386604309082,
+            "Oignon Rouge": 56.410430908203125,
+            "Olives Noires": 11.750101089477539,
+            "Pepperoni & Légumes 25'": 67.87010955810547,
+            "Pepperoni & Légumes 30'": 65.47684478759766,
+            "Pepperoni & Légumes 35'": 5.50970458984375,
+            "Pepperoni 25'": 2.7943031787872314,
+            "Pepperoni 30'": 3.3043718338012695,
+            "Pepperoni 35'": 3.593174457550049,
+            "Poivrons": 3.8475568294525146,
+            "Poulet Barbecue 25'": 3.0575149059295654,
+            "Poulet Barbecue 30'": 67.26568603515625,
+            "Poulet Barbecue 35'": 4.52219820022583,
+            "ROUIBA Ananas 1L": 3.177579641342163,
+            "ROUIBA Ananas 20CL": 3.6014347076416016,
+            "ROUIBA Cocktail 1L": 3.213482141494751,
+            "ROUIBA Cocktail 20CL": 66.55870056152344,
+            "Red Light 28CL": 21.513731002807617,
+            "Red Light 48CL": 20.2363338470459,
+            "SLIM Ananas 1L": 16.86810874938965,
+            "SLIM Ananas 33CL": 20.58324432373047,
+            "SLIM Ananas CAN 24CL": 14.50792407989502,
+            "SLIM Citron 1L": 13.285041809082031,
+            "SLIM Citron 33CL": 2.6049182415008545,
+            "SLIM Citron CAN 24CL": 2.44635272026062,
+            "SLIM Fraise 1L": 1.2463099956512451,
+            "SLIM Fraise 33CL": 0.5528268814086914,
+            "SLIM Litchi 1L": 2.4439094066619873,
+            "SLIM Litchi 33CL": 2.2943320274353027,
+            "SLIM Litchi CAN 24CL": 2.6930665969848633,
+            "SLIM Orange 1L": 0.9306957721710205,
+            "SLIM Orange 33CL": 3.382758855819702,
+            "SLIM Orange CAN 24CL": 2.041407346725464,
+            "SLIM Pomme 1L": 1.4493249654769897,
+            "SLIM Pomme 33CL": 1.6695494651794434,
+            "SLIM Pomme CAN 24CL": 1.6593987941741943,
+            "Salamé": 1.4964520931243896,
+            "Sauce Barbecue": 3.665994644165039,
+            "Sauce Crème": 1.7230256795883179,
+            "Sauce Tomate": 2.583534002304077,
+            "Thon": 68.2807846069336,
+            "Tropical 28CL": 68.8260498046875,
+            "Tropical 48CL": 898.624267578125,
+            "Tuna 25'": 907.1787719726562,
+            "Tuna 30'": 68.1321029663086,
+            "Tuna 35'": 69.68864440917969,
+            "Viande Hachée 25'": 4.365391731262207,
+            "Viande Hachée 30'": 15.396236419677734,
+            "Viande Hachée 35'": 12.80382251739502,
+            "Végirarienne Champinions 25'": 4.0871992111206055,
+            "Végirarienne Champinions 30'": 3.339637517929077,
+            "Végirarienne Champinions 35'": 3.5893356800079346,
+            "Végitarienne 25'": 3.720458745956421,
+            "Végitarienne 30'": 3.190157890319824,
+            "Végitarienne 35'": 3.0164201259613037,
+            "Pizza 3 Fromages (Pâte L)": 66.14043426513672,
+            "Pizza 3 Fromages (Pâte M)": 4.2395734786987305,
+            "Pizza 3 Fromages (Pâte S)": 3.399113893508911,
+            "Pizza Anchovy (Pâte L)": 2.898898124694824,
+            "Pizza Anchovy (Pâte M)": 3.567570924758911,
+            "Pizza Anchovy (Pâte S)": 2.4798460006713867,
+            "Pizza Chicken (Pâte L)": 2.8795084953308105,
+            "Pizza Chicken (Pâte M)": 4.604215145111084,
+            "Pizza Chicken (Pâte S)": 69.01329803466797,
+            "Pizza Crevettes (Pâte L)": 2.455183506011963,
+            "Pizza Crevettes (Pâte M)": 20.818138122558594,
+            "Pizza Crevettes (Pâte S)": 21.738676071166992,
+            "Pizza Fruits De Mer (Pâte L)": 21.098962783813477,
+            "Pizza Fruits De Mer (Pâte M)": 22.381317138671875,
+            "Pizza Fruits De Mer (Pâte S)": 24.719802856445312,
+            "Pizza Légumes Poulet (Pâte L)": 23.61317253112793,
+            "Pizza Légumes Poulet (Pâte M)": 20.666404724121094,
+            "Pizza Légumes Poulet (Pâte S)": 23.27118682861328,
+            "Pizza Margherita (Pâte L)": 22.834169387817383,
+            "Pizza Margherita (Pâte M)": 20.813983917236328,
+            "Pizza Margherita (Pâte S)": 23.099191665649414,
+            "Pizza Merguez (Pâte L)": 21.455486297607422,
+            "Pizza Merguez (Pâte M)": 21.74232292175293,
+            "Pizza Merguez (Pâte S)": 20.560243606567383,
+            "Pizza Mix De Viande (Pâte L)": 23.95822525024414,
+            "Pizza Mix De Viande (Pâte M)": 22.838699340820312,
+            "Pizza Mix De Viande (Pâte S)": 23.10738754272461,
+            "Pizza Pepperoni & Tomates (Pâte L)": 22.80838394165039,
+            "Pizza Pepperoni & Tomates (Pâte M)": 22.42822265625,
+            "Pizza Pepperoni & Tomates (Pâte S)": 21.58980941772461,
+            "Pizza Poulet Barbecue (Pâte L)": 21.945375442504883,
+            "Pizza Poulet Barbecue (Pâte M)": 20.95579719543457,
+            "Pizza Poulet Barbecue (Pâte S)": 22.604637145996094,
+            "Pizza Tuna (Pâte L)": 22.311851501464844,
+            "Pizza Tuna (Pâte M)": 23.615516662597656,
+            "Pizza Tuna (Pâte S)": 21.283920288085938,
+            "Pizza Viande Hachée (Pâte L)": 24.21384620666504,
+            "Pizza Viande Hachée (Pâte M)": 22.80503273010254,
+            "Pizza Viande Hachée (Pâte S)": 22.17340660095215,
+            "Pizza Végétarienne (Pâte L)": 22.750181198120117,
+            "Pizza Végétarienne (Pâte M)": 23.321325302124023,
+            "Pizza Végétarienne (Pâte S)": 22.441322326660156,
+            "Pizza Végétarienne Champignions (Pâte L)": 21.035633087158203,
+            "Pizza Végétarienne Champignions (Pâte M)": 25.789154052734375,
+            "Pizza Végétarienne Champignions (Pâte S)": 20.585636138916016,
+            "Pizza au pepperoni (Pâte L)": 25.147764205932617,
+            "Pizza au pepperoni (Pâte M)": 23.498308181762695,
+            "Pizza au pepperoni (Pâte S)": 22.182798385620117
+        }
+    }
+]
+
+
+
+http://127.0.0.1:8000/predict_ingredients post
+
+data 
+
+{
+  "dates": ["2026-09-28"]
+}
+
+response
+
+
+[
+    {
+        "date": "2026-09-28",
+        "predictions": {
+            "3 Fromage 25'": 0.0030186267103999853,
+            "3 Fromage 30'": -0.037695251405239105,
+            "3 Fromage 35'": -0.01376718282699585,
+            "Anchois": 5.990248203277588,
+            "Anchovis 25'": -0.000356934848241508,
+            "Anchovis 30'": 0.0030317201744765043,
+            "Anchovis 35'": 0.9984588027000427,
+            "Bordure Fine": 16.944698333740234,
+            "Bordure Traditionnelle": 4.993951797485352,
+            "Capres": 18.457279205322266,
+            "Champignons": 14.877726554870605,
+            "Cheddar": 18.513460159301758,
+            "Crevette 25'": 0.003035380505025387,
+            "Crevette 30'": 1.4115252494812012,
+            "Crevette 35'": 0.36187079548835754,
+            "Crevettes": 8.183610916137695,
+            "Double Chicken 25'": -0.004199291579425335,
+            "Double Chicken 30'": 0.08364440500736237,
+            "Double Chicken 35'": 0.9972645044326782,
+            "Fromage Blanc": 11.78752613067627,
+            "Fruits De Mer 25'": 0.0018535259878262877,
+            "Fruits De Mer 30'": 0.0013225073926150799,
+            "Fruits De Mer 35'": 0.025389695540070534,
+            "Fruits de Mer": 7.1317620277404785,
+            "Gruyere": 9.468493461608887,
+            "HAM Cola 1L": 0.11576694250106812,
+            "HAM Cola 33CL": -0.0002323604712728411,
+            "HAM Cola CAN 24CL": 0.01012283843010664,
+            "HAM La Blanche 1L": -0.0029427488334476948,
+            "HAM La Blanche 33CL": -0.0003755055367946625,
+            "HAM La Blanche CAN 24CL": -0.0006138583412393928,
+            "HAM Selecto 1L": 0.0002860570966731757,
+            "HAM Selecto 33CL": -0.0006002119043841958,
+            "HAM Selecto CAN 24CL": 4.000847816467285,
+            "Herbes de Provence": 9.031418800354004,
+            "Huile d'Olive": 12.961454391479492,
+            "IFRUIT Ananas-Orange 1L": 0.00544579466804862,
+            "IFRUIT Ananas-Orange 33CL": 0.0003746718866750598,
+            "IFRUIT Mangue-Pomme 1L": -0.0007044609519653022,
+            "IFRUIT Mangue-Pomme 33CL": 3.995903730392456,
+            "IFRUIT Orange 1L": -0.01008222158998251,
+            "IFRUIT Orange 33CL": -0.00083009252557531,
+            "IFRUIT Orange-Citron-Carotte 1L": 3.955103874206543,
+            "IFRUIT Orange-Citron-Carotte 33CL": -0.0009612612193450332,
+            "IFRUIT Peche-Abricot-Orange-Pomme 1L": -4.732229353976436e-05,
+            "IFRUIT Peche-Abricot-Orange-Pomme 33CL": 0.38577771186828613,
+            "IFRUIT Pomme-Raisin-Mure-Carotte 1L": 0.9992673993110657,
+            "IFRUIT Pomme-Raisin-Mure-Carotte 33CL": 1.0178180932998657,
+            "Légumes Poulet 25'": 0.7236475348472595,
+            "Légumes Poulet 30'": 0.02114150859415531,
+            "Légumes Poulet 35'": 0.013991734944283962,
+            "Margharita 25'": 0.9981673359870911,
+            "Margharita 30'": 0.0008887609583325684,
+            "Margharita 35'": -0.0016343311872333288,
+            "Merguez": 13.174450874328613,
+            "Merguez 25'": 0.0022761018481105566,
+            "Merguez 30'": 0.5751702785491943,
+            "Merguez 35'": 2.0307018756866455,
+            "Mix De Viande 25'": -0.00013213740021456033,
+            "Mix De Viande 30'": 0.9947980642318726,
+            "Mix De Viande 35'": 0.9996820688247681,
+            "Mojito 28CL": 3.012810230255127,
+            "Mojito 48CL": 3.669877767562866,
+            "Oignon Rouge": 7.19403076171875,
+            "Olives Noires": 1.0260237455368042,
+            "Pepperoni & Légumes 25'": 16.080896377563477,
+            "Pepperoni & Légumes 30'": 15.849248886108398,
+            "Pepperoni & Légumes 35'": -0.029764074832201004,
+            "Pepperoni 25'": -8.020215318538249e-05,
+            "Pepperoni 30'": 2.906141519546509,
+            "Pepperoni 35'": 0.05074746534228325,
+            "Poivrons": 0.008568890392780304,
+            "Poulet Barbecue 25'": 0.00084137317026034,
+            "Poulet Barbecue 30'": 6.3290486335754395,
+            "Poulet Barbecue 35'": 2.011460542678833,
+            "ROUIBA Ananas 1L": 0.02656489796936512,
+            "ROUIBA Ananas 20CL": 0.9085606932640076,
+            "ROUIBA Cocktail 1L": 1.9972195625305176,
+            "ROUIBA Cocktail 20CL": 8.872064590454102,
+            "Red Light 28CL": 10.567342758178711,
+            "Red Light 48CL": -0.0069481199607253075,
+            "SLIM Ananas 1L": 7.966742992401123,
+            "SLIM Ananas 33CL": 6.982700347900391,
+            "SLIM Ananas CAN 24CL": 1.7649803161621094,
+            "SLIM Citron 1L": 4.956343173980713,
+            "SLIM Citron 33CL": -0.0009180867928080261,
+            "SLIM Citron CAN 24CL": 3.762427568435669,
+            "SLIM Fraise 1L": -0.0004127475549466908,
+            "SLIM Fraise 33CL": 0.0018060285365208983,
+            "SLIM Litchi 1L": 0.6290225982666016,
+            "SLIM Litchi 33CL": 4.167913436889648,
+            "SLIM Litchi CAN 24CL": -0.0002583472814876586,
+            "SLIM Orange 1L": -0.0008449330925941467,
+            "SLIM Orange 33CL": 0.0032675715629011393,
+            "SLIM Orange CAN 24CL": -0.0013211879413574934,
+            "SLIM Pomme 1L": 0.04682197421789169,
+            "SLIM Pomme 33CL": 0.0013199932873249054,
+            "SLIM Pomme CAN 24CL": 0.452972412109375,
+            "Salamé": 0.14138223230838776,
+            "Sauce Barbecue": 0.043916285037994385,
+            "Sauce Crème": 4.915140628814697,
+            "Sauce Tomate": -0.00017598689009901136,
+            "Thon": 11.338212013244629,
+            "Tropical 28CL": 11.69349479675293,
+            "Tropical 48CL": 148.50025939941406,
+            "Tuna 25'": 132.27520751953125,
+            "Tuna 30'": 9.047633171081543,
+            "Tuna 35'": 11.605119705200195,
+            "Viande Hachée 25'": 0.0018574516288936138,
+            "Viande Hachée 30'": 3.4197962284088135,
+            "Viande Hachée 35'": 6.217010021209717,
+            "Végirarienne Champinions 25'": 0.04113568365573883,
+            "Végirarienne Champinions 30'": 1.9960317611694336,
+            "Végirarienne Champinions 35'": 0.0023216712288558483,
+            "Végitarienne 25'": -0.06150813400745392,
+            "Végitarienne 30'": 7.004397775745019e-05,
+            "Végitarienne 35'": 0.9982118606567383,
+            "Pizza 3 Fromages (Pâte L)": 12.152608871459961,
+            "Pizza 3 Fromages (Pâte M)": 0.00046529548126272857,
+            "Pizza 3 Fromages (Pâte S)": 3.980544328689575,
+            "Pizza Anchovy (Pâte L)": 0.00029199995333328843,
+            "Pizza Anchovy (Pâte M)": 1.001690149307251,
+            "Pizza Anchovy (Pâte S)": 0.0008840821101330221,
+            "Pizza Chicken (Pâte L)": 0.0004632727650459856,
+            "Pizza Chicken (Pâte M)": 1.9994566440582275,
+            "Pizza Chicken (Pâte S)": 10.844233512878418,
+            "Pizza Crevettes (Pâte L)": -0.006140008103102446,
+            "Pizza Crevettes (Pâte M)": 3.1909327507019043,
+            "Pizza Crevettes (Pâte S)": 3.845202684402466,
+            "Pizza Fruits De Mer (Pâte L)": 3.2611775398254395,
+            "Pizza Fruits De Mer (Pâte M)": 4.036763668060303,
+            "Pizza Fruits De Mer (Pâte S)": 4.792439937591553,
+            "Pizza Légumes Poulet (Pâte L)": 6.385056495666504,
+            "Pizza Légumes Poulet (Pâte M)": 4.787103176116943,
+            "Pizza Légumes Poulet (Pâte S)": 2.3196303844451904,
+            "Pizza Margherita (Pâte L)": 3.204861640930176,
+            "Pizza Margherita (Pâte M)": 2.7379133701324463,
+            "Pizza Margherita (Pâte S)": 4.4832234382629395,
+            "Pizza Merguez (Pâte L)": 3.9115800857543945,
+            "Pizza Merguez (Pâte M)": 4.32888126373291,
+            "Pizza Merguez (Pâte S)": 3.587947130203247,
+            "Pizza Mix De Viande (Pâte L)": 3.2121963500976562,
+            "Pizza Mix De Viande (Pâte M)": 2.59307599067688,
+            "Pizza Mix De Viande (Pâte S)": 3.4576401710510254,
+            "Pizza Pepperoni & Tomates (Pâte L)": 3.7586915493011475,
+            "Pizza Pepperoni & Tomates (Pâte M)": 4.29288911819458,
+            "Pizza Pepperoni & Tomates (Pâte S)": 2.944390058517456,
+            "Pizza Poulet Barbecue (Pâte L)": 4.387258052825928,
+            "Pizza Poulet Barbecue (Pâte M)": 3.6187922954559326,
+            "Pizza Poulet Barbecue (Pâte S)": 3.3624799251556396,
+            "Pizza Tuna (Pâte L)": 2.813037872314453,
+            "Pizza Tuna (Pâte M)": 2.809932231903076,
+            "Pizza Tuna (Pâte S)": 3.2443606853485107,
+            "Pizza Viande Hachée (Pâte L)": 3.4687612056732178,
+            "Pizza Viande Hachée (Pâte M)": 2.958099365234375,
+            "Pizza Viande Hachée (Pâte S)": 2.644747734069824,
+            "Pizza Végétarienne (Pâte L)": 4.517537593841553,
+            "Pizza Végétarienne (Pâte M)": 3.3506033420562744,
+            "Pizza Végétarienne (Pâte S)": 3.6208646297454834,
+            "Pizza Végétarienne Champignions (Pâte L)": 4.116909980773926,
+            "Pizza Végétarienne Champignions (Pâte M)": 3.4327392578125,
+            "Pizza Végétarienne Champignions (Pâte S)": 4.002591133117676,
+            "Pizza au pepperoni (Pâte L)": 3.7699809074401855,
+            "Pizza au pepperoni (Pâte M)": 2.455167770385742,
+            "Pizza au pepperoni (Pâte S)": 4.509498596191406
+        }
+    }
+]
+
+
