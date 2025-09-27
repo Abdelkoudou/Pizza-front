@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TrendingUp, AlertTriangle } from 'lucide-react';
 import { 
   AreaChart,
@@ -8,18 +8,22 @@ import {
   CartesianGrid, 
   ResponsiveContainer,
   Tooltip,
-  LineChart,
-  Line,
   ComposedChart,
   Bar,
   PieChart,
   Pie,
   Cell
 } from 'recharts';
+import { apiService, dataUtils, OrderPrediction, IngredientPrediction, WeeklyIngredientPrediction } from '../utils/api';
 
 const Dashboard: React.FC = () => {
   const [orderTimeframe, setOrderTimeframe] = useState('Weekly');
   const [ingredientsTimeframe, setIngredientsTimeframe] = useState('Weekly');
+  const [orderData, setOrderData] = useState<any[]>([]);
+  const [ingredientsData, setIngredientsData] = useState<any[]>([]);
+  const [totalOrders, setTotalOrders] = useState(0);
+  const [mostForecastedIngredient, setMostForecastedIngredient] = useState<{ name: string; value: number }>({ name: '', value: 0 });
+  const [loading, setLoading] = useState(false);
 
   // Realtime Users Data
   const realtimeData = [
@@ -29,89 +33,141 @@ const Dashboard: React.FC = () => {
     { label: 'Active staff', value: 8, change: '+2', trend: 'up' }
   ];
 
-  // Order Forecasting Data - Weekly
-  const weeklyOrderData = [
-    { week: 'Week 1', pizza: 45000, bar: 120000, others: 80000 },
-    { week: 'Week 2', pizza: 42000, bar: 110000, others: 75000 },
-    { week: 'Week 3', pizza: 65000, bar: 140000, others: 95000 },
-    { week: 'Week 4', pizza: 58000, bar: 160000, others: 105000 },
-    { week: 'Week 5', pizza: 62000, bar: 180000, others: 115000 },
-    { week: 'Week 6', pizza: 55000, bar: 150000, others: 90000 },
-    { week: 'Week 7', pizza: 48000, bar: 130000, others: 85000 },
-    { week: 'Week 8', pizza: 52000, bar: 135000, others: 88000 }
-  ];
+  // Load data from API
+  useEffect(() => {
+    loadOrderData();
+    loadIngredientsData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [orderTimeframe, ingredientsTimeframe]);
 
-  // Order Forecasting Data - Daily
-  const dailyOrderData = [
-    { day: 'Mon', pizza: 12000, bar: 35000, others: 22000 },
-    { day: 'Tue', pizza: 11000, bar: 32000, others: 20000 },
-    { day: 'Wed', pizza: 13000, bar: 38000, others: 25000 },
-    { day: 'Thu', pizza: 14000, bar: 42000, others: 28000 },
-    { day: 'Fri', pizza: 18000, bar: 55000, others: 35000 },
-    { day: 'Sat', pizza: 22000, bar: 65000, others: 42000 },
-    { day: 'Sun', pizza: 19000, bar: 58000, others: 38000 }
-  ];
+  const loadOrderData = async () => {
+    setLoading(true);
+    try {
+      let predictions: OrderPrediction[] = [];
+      const sampleContext = [{
+        date: "2025-09-28",
+        temp_min_c: 18,
+        temp_max_c: 28,
+        humidity_pct: 60,
+        wind_kph: 12,
+        precip_mm: 0.2,
+        precip_prob: 30
+      }];
 
-  // Order Forecasting Data - Hourly
-  const hourlyOrderData = [
-    { hour: '8AM', pizza: 800, bar: 2000, others: 1200 },
-    { hour: '10AM', pizza: 1200, bar: 3000, others: 1800 },
-    { hour: '12PM', pizza: 2500, bar: 6000, others: 4000 },
-    { hour: '2PM', pizza: 1800, bar: 4500, others: 3000 },
-    { hour: '4PM', pizza: 1500, bar: 3800, others: 2500 },
-    { hour: '6PM', pizza: 3000, bar: 8000, others: 5500 },
-    { hour: '8PM', pizza: 4000, bar: 12000, others: 8000 },
-    { hour: '10PM', pizza: 2500, bar: 7000, others: 4500 }
-  ];
+      if (orderTimeframe === 'Daily') {
+        const dates = Array.from({length: 7}, (_, i) => {
+          const date = new Date();
+          date.setDate(date.getDate() + i);
+          return dataUtils.formatDateForAPI(date);
+        });
+        predictions = await apiService.getDailyPredictions(dates, sampleContext);
+      } else if (orderTimeframe === 'Weekly') {
+        const weeks = Array.from({length: 8}, (_, i) => {
+          const date = new Date();
+          date.setDate(date.getDate() + (i * 7));
+          return dataUtils.formatDateForAPI(date);
+        });
+        predictions = await apiService.getWeeklyPredictions(weeks);
+      } else { // Hourly
+        const timestamps = Array.from({length: 24}, (_, i) => {
+          const date = new Date();
+          date.setHours(i);
+          return date.toISOString();
+        });
+        predictions = await apiService.getHourlyPredictions(timestamps, sampleContext);
+      }
 
-  // Get the appropriate data based on timeframe
-  const getOrderData = () => {
-    switch (orderTimeframe) {
-      case 'Hourly':
-        return hourlyOrderData;
-      case 'Daily':
-        return dailyOrderData;
-      case 'Weekly':
-        return weeklyOrderData;
-      default:
-        return weeklyOrderData;
+      // Transform predictions to chart data
+      const chartData = predictions.map((pred, index) => {
+        let timeLabel = '';
+        if (pred.date) {
+          const date = new Date(pred.date);
+          timeLabel = orderTimeframe === 'Daily' ? date.toLocaleDateString('en', {weekday: 'short'}) : `Week ${index + 1}`;
+        } else if (pred.hour) {
+          const date = new Date(pred.hour);
+          timeLabel = `${date.getHours()}:00`;
+        } else if (pred.week) {
+          timeLabel = `Week ${index + 1}`;
+        }
+        
+        return {
+          [orderTimeframe === 'Daily' ? 'day' : orderTimeframe === 'Weekly' ? 'week' : 'hour']: timeLabel,
+          pizza: Math.round(pred.predicted_orders * 0.7), // Assume 70% pizza orders
+          bar: Math.round(pred.predicted_orders * 0.2),   // Assume 20% bar orders  
+          others: Math.round(pred.predicted_orders * 0.1) // Assume 10% other orders
+        };
+      });
+
+      setOrderData(chartData);
+      
+      // Calculate total orders
+      const total = predictions.reduce((sum, pred) => sum + pred.predicted_orders, 0);
+      setTotalOrders(Math.round(total));
+
+    } catch (error) {
+      console.error('Failed to load order data:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  const orderData = getOrderData();
+  const loadIngredientsData = async () => {
+    try {
+      let predictions: IngredientPrediction[] | WeeklyIngredientPrediction[] = [];
+      
+      if (ingredientsTimeframe === 'Daily') {
+        const dates = Array.from({length: 7}, (_, i) => {
+          const date = new Date();
+          date.setDate(date.getDate() + i);
+          return dataUtils.formatDateForAPI(date);
+        });
+        predictions = await apiService.getDailyIngredientPredictions(dates);
+      } else {
+        const weeks = Array.from({length: 4}, (_, i) => {
+          const date = new Date();
+          date.setDate(date.getDate() + (i * 7));
+          return dataUtils.formatDateForAPI(date);
+        });
+        predictions = await apiService.getWeeklyIngredientPredictions(weeks);
+      }
 
-  // Ingredients/Items Data
-  const ingredientsData = [
-    { name: 'Tomato Sauce', weekly: 45, daily: 8 },
-    { name: 'Mozzarella', weekly: 120, daily: 18 },
-    { name: 'Pepperoni', weekly: 85, daily: 12 },
-    { name: 'Mushrooms', weekly: 60, daily: 9 },
-    { name: 'Onions', weekly: 40, daily: 6 },
-    { name: 'Bell Peppers', weekly: 35, daily: 5 },
-    { name: 'Olives', weekly: 25, daily: 4 },
-    { name: 'Basil', weekly: 15, daily: 2 }
-  ];
+      // Transform ingredients data and find most forecasted
+      if (predictions.length > 0) {
+        const allPredictions = predictions[0].predictions;
+        const mostForecasted = dataUtils.getMostForecastedIngredient(allPredictions);
+        setMostForecastedIngredient(mostForecasted);
 
-  // Usage Data for Daily view (same as ingredients page)
-  const dailyUsageData = [
-    { day: 'Sat', solidOrange: 70, dottedGray: 80 },
-    { day: 'Sun', solidOrange: 70, dottedGray: 80 },
-    { day: 'Mon', solidOrange: 0, dottedGray: 0, dottedOrange: 110 },
-    { day: 'Tue', solidOrange: 0, dottedGray: 0, dottedOrange: 95 },
-    { day: 'Wed', solidOrange: 0, dottedGray: 0, dottedOrange: 80 },
-    { day: 'Thu', solidOrange: 0, dottedGray: 0, dottedOrange: 60 },
-    { day: 'Fri', solidOrange: 0, dottedGray: 0, dottedOrange: 90 }
-  ];
+        // Create chart data for ingredients
+        const chartData = ingredientsTimeframe === 'Daily' ? 
+          Array.from({length: 7}, (_, i) => ({
+            day: ['Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'][i],
+            solidOrange: i < 2 ? 70 : 0,
+            dottedGray: i < 2 ? 80 : 0,
+            dottedOrange: i >= 2 ? Math.round(mostForecasted.value / 10) : 0
+          })) :
+          Array.from({length: 4}, (_, i) => ({
+            week: `Week ${i + 1}`,
+            solidOrange: i === 0 ? 85 : 0,
+            dottedGray: i === 0 ? 90 : 0,
+            dottedOrange: i > 0 ? Math.round(mostForecasted.value / 5) : 0
+          }));
 
-  // Usage Data for Weekly view
-  const weeklyUsageData = [
-    { week: 'Week 1', solidOrange: 85, dottedGray: 90 },
-    { week: 'Week 2', solidOrange: 0, dottedGray: 0, dottedOrange: 95 },
-    { week: 'Week 3', solidOrange: 0, dottedGray: 0, dottedOrange: 88 },
-    { week: 'Week 4', solidOrange: 0, dottedGray: 0, dottedOrange: 92 }
-  ];
+        setIngredientsData(chartData);
+      }
+    } catch (error) {
+      console.error('Failed to load ingredients data:', error);
+    }
+  };
 
-  const usageData = ingredientsTimeframe === 'Daily' ? dailyUsageData : weeklyUsageData;
+  // Update order timeframe and reload data
+  const handleOrderTimeframeChange = (timeframe: string) => {
+    setOrderTimeframe(timeframe);
+  };
+
+  // Update ingredients timeframe and reload data
+  const handleIngredientsTimeframeChange = (timeframe: string) => {
+    setIngredientsTimeframe(timeframe);
+  };
 
   // Most Selling Items Data for Pie Chart
   const mostSellingData = [
@@ -150,19 +206,19 @@ const Dashboard: React.FC = () => {
             <div className="timeframe-tabs">
               <button 
                 className={`tab-button ${orderTimeframe === 'Hourly' ? 'active' : ''}`}
-                onClick={() => setOrderTimeframe('Hourly')}
+                onClick={() => handleOrderTimeframeChange('Hourly')}
               >
                 Hourly
               </button>
               <button 
                 className={`tab-button ${orderTimeframe === 'Daily' ? 'active' : ''}`}
-                onClick={() => setOrderTimeframe('Daily')}
+                onClick={() => handleOrderTimeframeChange('Daily')}
               >
                 Daily
               </button>
               <button 
                 className={`tab-button ${orderTimeframe === 'Weekly' ? 'active' : ''}`}
-                onClick={() => setOrderTimeframe('Weekly')}
+                onClick={() => handleOrderTimeframeChange('Weekly')}
               >
                 Weekly
               </button>
@@ -257,8 +313,18 @@ const Dashboard: React.FC = () => {
           <h3 className="alerts-title">Alerts</h3>
           <div className="alert-item">
             <AlertTriangle className="alert-icon" />
-            <span className="alert-text">Tomato Sauce High Drop</span>
+            <span className="alert-text">
+              {mostForecastedIngredient.name ? 
+                `${mostForecastedIngredient.name} High Forecast (${Math.round(mostForecastedIngredient.value)} units)` : 
+                'Tomato Sauce High Drop'
+              }
+            </span>
           </div>
+          {loading && (
+            <div className="alert-item">
+              <span className="alert-text">Loading forecast data...</span>
+            </div>
+          )}
         </div>
       </div>
 
@@ -274,13 +340,13 @@ const Dashboard: React.FC = () => {
             <div className="timeframe-tabs">
               <button 
                 className={`tab-button ${ingredientsTimeframe === 'Daily' ? 'active' : ''}`}
-                onClick={() => setIngredientsTimeframe('Daily')}
+                onClick={() => handleIngredientsTimeframeChange('Daily')}
               >
                 Daily
               </button>
               <button 
                 className={`tab-button ${ingredientsTimeframe === 'Weekly' ? 'active' : ''}`}
-                onClick={() => setIngredientsTimeframe('Weekly')}
+                onClick={() => handleIngredientsTimeframeChange('Weekly')}
               >
                 Weekly
               </button>
@@ -289,7 +355,7 @@ const Dashboard: React.FC = () => {
 
           <div className="chart-container">
             <ResponsiveContainer width="100%" height={400}>
-              <ComposedChart data={usageData} margin={{ top: 20, right: 30, left: 20, bottom: 80 }}>
+              <ComposedChart data={ingredientsData} margin={{ top: 20, right: 30, left: 20, bottom: 80 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
                 <XAxis 
                   dataKey={ingredientsTimeframe === 'Daily' ? 'day' : 'week'} 
@@ -300,7 +366,7 @@ const Dashboard: React.FC = () => {
                 <Tooltip 
                   formatter={(value: any, name: string) => [
                     `${value}`, 
-                    name === 'solidOrange' ? 'Past Usage' : name === 'dottedGray' ? 'Historical' : 'Forecast'
+                    name === 'solidOrange' ? 'Past Usage' : name === 'dottedGray' ? 'Historical' : `Forecast: ${mostForecastedIngredient.name}`
                   ]}
                   labelStyle={{ color: '#333' }}
                   contentStyle={{ 

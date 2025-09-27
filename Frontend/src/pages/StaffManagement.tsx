@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Calendar,
   Filter,
@@ -12,10 +12,75 @@ import {
   Truck,
   User,
 } from "lucide-react";
+import { apiService, dataUtils } from '../utils/api';
 
 const StaffManagement: React.FC = () => {
   const [config, setConfig] = useState<any[] | null>(null);
   const [assignment, setAssignment] = useState<any[] | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  // Load staff data on component mount
+  useEffect(() => {
+    loadStaffConfig();
+  }, []);
+
+  const loadStaffConfig = async () => {
+    setLoading(true);
+    try {
+      const staffConfig = await apiService.getStaffConfig();
+      if (staffConfig) {
+        // Transform API data to match the existing UI format
+        const configData = [{
+          date: staffConfig.forecast_info.forecast_date,
+          shifts: [
+            {
+              name: `Morning (${staffConfig.morning_shift.shift_hours})`,
+              orders: staffConfig.morning_shift.predicted_orders,
+              roles: staffConfig.morning_shift.staffing_config,
+            },
+            {
+              name: `Night (${staffConfig.night_shift.shift_hours})`,
+              orders: staffConfig.night_shift.predicted_orders, 
+              roles: staffConfig.night_shift.staffing_config,
+            }
+          ],
+          weather: staffConfig.weather_context
+        }];
+        setConfig(configData);
+      }
+    } catch (error) {
+      console.error('Failed to load staff config:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const loadStaffAssignment = async () => {
+    setLoading(true);
+    try {
+      const staffAssignment = await apiService.getStaffAssignment();
+      if (staffAssignment) {
+        // Format the date for tomorrow
+        const tomorrow = dataUtils.getTomorrowDate();
+        const formattedDate = dataUtils.formatDateForDisplay(tomorrow);
+        
+        const assignmentData = [{
+          date: formattedDate,
+          day: staffAssignment.morning_shift.staff_assignment,
+          night: staffAssignment.night_shift.staff_assignment,
+          morningOrders: staffAssignment.morning_shift.predicted_orders,
+          nightOrders: staffAssignment.night_shift.predicted_orders,
+          totalCost: staffAssignment.total_daily_cost,
+          weather: staffAssignment.weather_context
+        }];
+        setAssignment(assignmentData);
+      }
+    } catch (error) {
+      console.error('Failed to load staff assignment:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // Role to icon mapping
   const roleIcons: Record<string, React.ReactNode> = {
@@ -118,9 +183,9 @@ const StaffManagement: React.FC = () => {
           </div>
           <button
             className="add-button"
-            onClick={() => setConfig(generateBestConfig())}
+            onClick={loadStaffConfig}
           >
-            Get Best Config
+            {loading ? 'Loading...' : 'Get Best Config'}
           </button>
         </div>
         <div className="card-body">
@@ -129,11 +194,11 @@ const StaffManagement: React.FC = () => {
               {config.map((day, i) => (
                 <div key={i} className="config-item">
                   <h3 className="config-date">
-                    📅 {day.date}
+                    📅 {day.date} - {day.weather && `${day.weather.temp_min_c}°C to ${day.weather.temp_max_c}°C`}
                   </h3>
                   {day.shifts.map((shift: any, idx: number) => (
                     <div key={idx} className="shift-section">
-                      <p className="shift-name">{shift.name}</p>
+                      <p className="shift-name">{shift.name} - Predicted Orders: {shift.orders}</p>
                       <div className="roles-grid">
                         {Object.entries(
                           shift.roles as Record<string, number>
@@ -141,7 +206,7 @@ const StaffManagement: React.FC = () => {
                           <div key={role} className="role-item">
                             {roleIcons[role]}
                             <span className="role-name">{role}</span>
-                            <span className="role-count">{count}</span>
+                            <span className="role-count">{count} staff</span>
                           </div>
                         ))}
                       </div>
@@ -163,9 +228,9 @@ const StaffManagement: React.FC = () => {
           </div>
           <button
             className="add-button"
-            onClick={() => setAssignment(generateBestAssignment())}
+            onClick={loadStaffAssignment}
           >
-            Get Best Assignment
+            {loading ? 'Loading...' : 'Get Best Assignment'}
           </button>
         </div>
         <div className="card-body">
@@ -174,11 +239,17 @@ const StaffManagement: React.FC = () => {
               {assignment.map((day, i) => (
                 <div key={i} className="assignment-item">
                   <h3 className="assignment-date">
-                    📅 {day.date}
+                    📅 {day.date} - Total Cost: ${day.totalCost ? day.totalCost.toLocaleString() : 'N/A'} DZD
                   </h3>
+                  {day.weather && (
+                    <div className="weather-info">
+                      🌤️ Weather: {day.weather.temp_min_c}°C - {day.weather.temp_max_c}°C, 
+                      Humidity: {day.weather.humidity_pct}%, Rain: {day.weather.precip_mm}mm
+                    </div>
+                  )}
                   <div className="shift-assignment">
                     <p className="shift-title">
-                      Day Shift (Forecast Orders: 340)
+                      Morning Shift (Forecast Orders: {day.morningOrders || 340})
                     </p>
                     <div className="roles-grid">
                       {Object.entries(
@@ -194,7 +265,7 @@ const StaffManagement: React.FC = () => {
                   </div>
                   <div className="shift-assignment">
                     <p className="shift-title">
-                      Night Shift (Forecast Orders: 570)
+                      Night Shift (Forecast Orders: {day.nightOrders || 570})
                     </p>
                     <div className="roles-grid">
                       {Object.entries(
