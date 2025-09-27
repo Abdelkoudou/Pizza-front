@@ -3,7 +3,7 @@ import { Eye } from 'lucide-react';
 import pizzaImage from '../pizza image.png';
 import SearchContainer from '../components/SearchContainer';
 import PizzaDetail from './PizzaDetail';
-import { getMenuPizzas, MenuPizza } from '../utils/pizzaData';
+import { getMenuPizzas } from '../utils/pizzaData';
 
 interface MenuItem {
   id: number;
