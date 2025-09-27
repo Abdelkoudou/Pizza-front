@@ -11,7 +11,7 @@ import {
   AreaChart
 } from 'recharts';
 import { apiService, dataUtils } from '../utils/api';
-import { getPizzaByName, calculateIngredientRequirements } from '../utils/pizzaData';
+import { getPizzaByName } from '../utils/pizzaData';
 
 interface PizzaDetailProps {
   pizza: {
@@ -29,11 +29,71 @@ const PizzaDetail: React.FC<PizzaDetailProps> = ({ pizza, onBack }) => {
   const [forecastData, setForecastData] = useState<any[]>([]);
   const [ingredientForecasts, setIngredientForecasts] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
+  const [calculatedIncome, setCalculatedIncome] = useState(0);
+
+  // Calculate income based on forecast orders and pizza prices
+  const calculatePizzaIncome = (orders: number, sizeIndex: number = 1): number => {
+    // Parse price (remove 'da' and convert to number)
+    const priceText = pizza.prices[sizeIndex] || pizza.prices[0];
+    const price = parseInt(priceText.replace(/[^0-9]/g, ''));
+    return orders * price;
+  };
+
+  // Improved ingredient name matching
+  const findIngredientForecast = (ingredientName: string, predictions: any): number => {
+    const name = ingredientName.toLowerCase().trim();
+    let bestMatch = 0;
+    
+    // Direct matching patterns
+    const matchPatterns = {
+      'tomato sauce': ['sauce tomate', 'tomato', 'tomate'],
+      'mozzarella': ['mozzarella'],
+      'diced tomatoes': ['tomato', 'tomate', 'dés'],
+      'olive oil': ['huile d\'olive', 'olive oil', 'huile'],
+      'herbes italiennes': ['herbes', 'provence', 'italian'],
+      'cheddar': ['cheddar'],
+      'capres': ['capres', 'câpres'],
+      'mushrooms': ['champignons', 'mushroom'],
+      'pepperoni': ['pepperoni'],
+      'chicken': ['poulet', 'chicken'],
+      'ham': ['jambon', 'ham'],
+      'onions': ['oignon', 'onion'],
+      'pepper': ['poivron', 'pepper'],
+      'anchovy': ['anchois', 'anchovy']
+    };
+
+    // Try to find matches
+    Object.entries(predictions).forEach(([key, value]) => {
+      const keyLower = key.toLowerCase();
+      const numValue = typeof value === 'number' ? value : 0;
+      
+      // Check against patterns
+      Object.entries(matchPatterns).forEach(([pattern, variations]) => {
+        if (name.includes(pattern)) {
+          variations.forEach(variation => {
+            if (keyLower.includes(variation)) {
+              bestMatch = Math.max(bestMatch, numValue);
+            }
+          });
+        }
+      });
+
+      // Direct substring matching
+      if (keyLower.includes(name) || name.includes(keyLower.split(' ')[0])) {
+        bestMatch = Math.max(bestMatch, numValue);
+      }
+    });
+
+    return Math.round(bestMatch);
+  };
 
   // Load forecast data when component mounts or pizza changes
   useEffect(() => {
-    loadForecastData();
-    loadIngredientForecasts();
+    const loadData = async () => {
+      await Promise.all([loadForecastData(), loadIngredientForecasts()]);
+    };
+    loadData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pizza.name, activeTab]);
 
   const loadForecastData = async () => {
@@ -77,6 +137,11 @@ const PizzaDetail: React.FC<PizzaDetailProps> = ({ pizza, onBack }) => {
           };
         });
         
+        // Calculate total income from forecast
+        const totalOrders = chartData.reduce((sum, data) => sum + (data.predicted + data.actual), 0);
+        const income = calculatePizzaIncome(totalOrders, 1); // Use medium size for calculation
+        setCalculatedIncome(income);
+        
         setForecastData(chartData);
       } else {
         // Weekly data
@@ -97,6 +162,11 @@ const PizzaDetail: React.FC<PizzaDetailProps> = ({ pizza, onBack }) => {
             past: index === 0 ? weekOrders : 0
           };
         });
+        
+        // Calculate total income from weekly forecast
+        const totalOrders = chartData.reduce((sum, data) => sum + (data.predicted + data.actual), 0);
+        const income = calculatePizzaIncome(totalOrders, 1);
+        setCalculatedIncome(income);
         
         setForecastData(chartData);
       }
@@ -123,27 +193,15 @@ const PizzaDetail: React.FC<PizzaDetailProps> = ({ pizza, onBack }) => {
           // Use the medium size (30cm) as default
           const mediumSize = pizzaData.sizes.find(s => s.size === 30) || pizzaData.sizes[1] || pizzaData.sizes[0];
           mediumSize.ingredients.forEach(ingredient => {
-            // Try to find matching prediction by ingredient name
-            let forecastValue = 0;
-            const ingredientName = ingredient.label.toLowerCase();
-            
-            // Look for matches in the prediction data
-            Object.entries(ingredientPredictions).forEach(([key, value]) => {
-              const keyLower = key.toLowerCase();
-              if (keyLower.includes(ingredientName) || 
-                  ingredientName.includes(keyLower.split(' ')[0]) ||
-                  (ingredientName.includes('tomato') && keyLower.includes('sauce tomate')) ||
-                  (ingredientName.includes('mozzarella') && keyLower.includes('mozzarella')) ||
-                  (ingredientName.includes('pepper') && keyLower.includes('pepper'))) {
-                forecastValue = Math.max(forecastValue, typeof value === 'number' ? value : 0);
-              }
-            });
+            const forecastValue = findIngredientForecast(ingredient.label, ingredientPredictions);
             
             actualIngredients.push({
               name: ingredient.label,
               price: `${Math.round(ingredient.amount * 10)} DA`,
               image: pizzaImage,
-              forecast: Math.round(forecastValue)
+              forecast: forecastValue,
+              amount: ingredient.amount,
+              key: ingredient.key
             });
           });
         } else {
@@ -185,7 +243,12 @@ const PizzaDetail: React.FC<PizzaDetailProps> = ({ pizza, onBack }) => {
           </div>
           <div className="pizza-details">
             <h2>{pizza.name}</h2>
-            <p>Mozzarella, tomates en dés, Herbes italiennes, Huile d'olive</p>
+            <p>
+              {ingredientForecasts.length > 0 
+                ? ingredientForecasts.map(ing => ing.name).join(', ')
+                : 'Mozzarella, tomates en dés, Herbes italiennes, Huile d\'olive'
+              }
+            </p>
             <div className="pizza-tag">
               <Pizza className="nav-icon" />
               Pizza
@@ -216,7 +279,7 @@ const PizzaDetail: React.FC<PizzaDetailProps> = ({ pizza, onBack }) => {
               <div className="revenue-info">
                 <h3>Net Revenue</h3>
                 <div className="revenue-metric">
-                  40,000 DZD
+                  {calculatedIncome.toLocaleString()} DZD
                   <span className="metric-change positive">+1.3%</span>
                 </div>
               </div>
