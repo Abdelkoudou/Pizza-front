@@ -19,6 +19,26 @@ import {
   Area
 } from 'recharts';
 
+// Predefined events with their impact levels
+const predefinedEvents = [
+  { name: 'None', value: '', impact: 0, description: 'No special events' },
+  { name: 'Local Festival', value: 'festival', impact: 2, description: 'Community festival increases foot traffic' },
+  { name: 'Sports Game', value: 'sports', impact: 1.5, description: 'Big game day brings crowds' },
+  { name: 'Concert', value: 'concert', impact: 1.8, description: 'Music event nearby' },
+  { name: 'Holiday', value: 'holiday', impact: 1.3, description: 'Public holiday celebration' },
+  { name: 'Wedding', value: 'wedding', impact: 0.8, description: 'Private event nearby' }
+];
+
+// Predefined weather states with their impact levels
+const predefinedWeather = [
+  { name: 'Normal', value: '', impact: 0, description: 'Typical weather conditions' },
+  { name: 'Sunny & Hot', value: 'sunny', impact: 1.2, description: 'Great weather increases outdoor dining' },
+  { name: 'Rainy', value: 'rainy', impact: 0.7, description: 'Rain reduces foot traffic' },
+  { name: 'Stormy', value: 'stormy', impact: 0.5, description: 'Severe weather limits customers' },
+  { name: 'Cold', value: 'cold', impact: 0.8, description: 'Cold weather affects outdoor seating' },
+  { name: 'Perfect', value: 'perfect', impact: 1.4, description: 'Ideal weather for dining out' }
+];
+
 const WhatIfSimulator: React.FC = () => {
   const [scenario, setScenario] = useState({
     priceChange: 0,
@@ -29,26 +49,6 @@ const WhatIfSimulator: React.FC = () => {
 
   const [results, setResults] = useState<any>(null);
   
-
-  // Predefined events with their impact levels
-  const predefinedEvents = [
-    { name: 'None', value: '', impact: 0, description: 'No special events' },
-    { name: 'Local Festival', value: 'festival', impact: 2, description: 'Community festival increases foot traffic' },
-    { name: 'Sports Game', value: 'sports', impact: 1.5, description: 'Big game day brings crowds' },
-    { name: 'Concert', value: 'concert', impact: 1.8, description: 'Music event nearby' },
-    { name: 'Holiday', value: 'holiday', impact: 1.3, description: 'Public holiday celebration' },
-    { name: 'Wedding', value: 'wedding', impact: 0.8, description: 'Private event nearby' }
-  ];
-
-  // Predefined weather states with their impact levels
-  const predefinedWeather = [
-    { name: 'Normal', value: '', impact: 0, description: 'Typical weather conditions' },
-    { name: 'Sunny & Hot', value: 'sunny', impact: 1.2, description: 'Great weather increases outdoor dining' },
-    { name: 'Rainy', value: 'rainy', impact: 0.7, description: 'Rain reduces foot traffic' },
-    { name: 'Stormy', value: 'stormy', impact: 0.5, description: 'Severe weather limits customers' },
-    { name: 'Cold', value: 'cold', impact: 0.8, description: 'Cold weather affects outdoor seating' },
-    { name: 'Perfect', value: 'perfect', impact: 1.4, description: 'Ideal weather for dining out' }
-  ];
 
   const generateForecastData = useCallback((baseOrders: number, scenario: any) => {
     const data = [];

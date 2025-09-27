@@ -1,5 +1,6 @@
 import React from 'react';
 import { Bell } from 'lucide-react';
+import LanguageSwitcher from './LanguageSwitcher';
 
 interface HeaderProps {
   pageTitle: string;
@@ -13,6 +14,7 @@ const Header: React.FC<HeaderProps> = ({ pageTitle }) => {
       </div>
       
       <div className="header-right">
+        <LanguageSwitcher />
         <div className="user-profile">
           <Bell className="nav-icon" />
           <div className="user-avatar">AM</div>

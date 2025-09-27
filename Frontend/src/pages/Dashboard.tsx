@@ -14,10 +14,12 @@ import {
   Pie,
   Cell
 } from 'recharts';
+import { useTranslation } from 'react-i18next';
 import { apiService, dataUtils, OrderPrediction, IngredientPrediction, WeeklyIngredientPrediction } from '../utils/api';
 import { calculateOrderScale, calculateIngredientScale } from '../utils/chartUtils';
 
 const Dashboard: React.FC = () => {
+  const { t } = useTranslation();
   const [orderTimeframe, setOrderTimeframe] = useState('Weekly');
   const [ingredientsTimeframe, setIngredientsTimeframe] = useState('Weekly');
   const [orderData, setOrderData] = useState<any[]>([]);
@@ -31,10 +33,10 @@ const Dashboard: React.FC = () => {
 
   // Realtime Users Data
   const realtimeData = [
-    { label: 'Realtime users', value: 635, change: '+21.01%', trend: 'up' },
-    { label: 'Orders today', value: 124, change: '+5.2%', trend: 'up' },
-    { label: 'Revenue', value: '$12,450', change: '+8.3%', trend: 'up' },
-    { label: 'Active staff', value: 8, change: '+2', trend: 'up' }
+    { label: t('realtimeUsers'), value: 635, change: '+21.01%', trend: 'up' },
+    { label: t('ordersToday'), value: 124, change: '+5.2%', trend: 'up' },
+    { label: t('revenue'), value: '$12,450', change: '+8.3%', trend: 'up' },
+    { label: t('activeStaff'), value: 8, change: '+2', trend: 'up' }
   ];
 
   // Load data from API
@@ -200,27 +202,27 @@ const Dashboard: React.FC = () => {
         <div className="order-forecasting-card">
           <div className="card-header">
             <div className="card-title-section">
-              <div className="card-subtitle">Statistics</div>
-              <h2 className="card-title">Order Forecasting</h2>
+              <div className="card-subtitle">{t('statistics')}</div>
+              <h2 className="card-title">{t('orderForecasting')}</h2>
             </div>
             <div className="timeframe-tabs">
               <button 
                 className={`tab-button ${orderTimeframe === 'Hourly' ? 'active' : ''}`}
                 onClick={() => handleOrderTimeframeChange('Hourly')}
               >
-                Hourly
+                {t('hourly')}
               </button>
               <button 
                 className={`tab-button ${orderTimeframe === 'Daily' ? 'active' : ''}`}
                 onClick={() => handleOrderTimeframeChange('Daily')}
               >
-                Daily
+                {t('daily')}
               </button>
               <button 
                 className={`tab-button ${orderTimeframe === 'Weekly' ? 'active' : ''}`}
                 onClick={() => handleOrderTimeframeChange('Weekly')}
               >
-                Weekly
+                {t('weekly')}
               </button>
             </div>
           </div>

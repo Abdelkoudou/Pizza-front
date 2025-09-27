@@ -241,6 +241,38 @@ input, textarea, select {
   font-weight: 500;
 }
 
+.language-switcher {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #666;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.language-switcher:hover {
+  background-color: #f8f9fa;
+  border-color: #dee2e6;
+  color: #333;
+}
+
+.language-switcher .nav-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.language-text {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
 .add-button {
   background-color: #E23A00;
   color: white;
