@@ -1,0 +1,551 @@
+[
+  {
+    "name": "Margharit",
+    "sizes": [
+      {
+        "size": 25,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 0.75 },
+          { "key": "M", "label": "Mozzarella", "amount": 225 },
+          { "key": "T", "label": "diced tomatoes", "amount": 1 },
+          { "key": "HO", "label": "Olive oil", "amount": 6 },
+          { "key": "HI", "label": "Herbes italiennes", "amount": 6 }
+        ]
+      },
+      {
+        "size": 30,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1 },
+          { "key": "M", "label": "Mozzarella", "amount": 300 },
+          { "key": "T", "label": "diced tomatoes", "amount": 1.5 },
+          { "key": "HO", "label": "Olive oil", "amount": 8 },
+          { "key": "HI", "label": "Herbes italiennes", "amount": 8 }
+        ]
+      },
+      {
+        "size": 35,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1.5 },
+          { "key": "M", "label": "Mozzarella", "amount": 450 },
+          { "key": "T", "label": "diced tomatoes", "amount": 2 },
+          { "key": "HO", "label": "Olive oil", "amount": 10 },
+          { "key": "HI", "label": "Herbes italiennes", "amount": 10 }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "3 Fromage",
+    "sizes": [
+      {
+        "size": 25,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 0.75 },
+          { "key": "M", "label": "Mozzarella", "amount": 150 },
+          { "key": "CD", "label": "cheddar", "amount": 0.5 },
+          { "key": "Gr", "label": "capres", "amount": 0.5 }
+        ]
+      },
+      {
+        "size": 30,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1 },
+          { "key": "M", "label": "Mozzarella", "amount": 200 },
+          { "key": "CD", "label": "cheddar", "amount": 0.75 },
+          { "key": "Gr", "label": "capres", "amount": 0.75 }
+        ]
+      },
+      {
+        "size": 35,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1.5 },
+          { "key": "M", "label": "Mozzarella", "amount": 300 },
+          { "key": "CD", "label": "cheddar", "amount": 1 },
+          { "key": "Gr", "label": "capres", "amount": 1 }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Double chicken",
+    "sizes": [
+      {
+        "size": 25,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 0.75 },
+          { "key": "M", "label": "Mozzarella", "amount": 150 },
+          { "key": "Pl", "label": "Chicken", "amount": 1 }
+        ]
+      },
+      {
+        "size": 30,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1 },
+          { "key": "M", "label": "Mozzarella", "amount": 200 },
+          { "key": "Pl", "label": "Chicken", "amount": 1.5 }
+        ]
+      },
+      {
+        "size": 35,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1.5 },
+          { "key": "M", "label": "Mozzarella", "amount": 300 },
+          { "key": "Pl", "label": "Chicken", "amount": 2 }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Crevette",
+    "sizes": [
+      {
+        "size": 25,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 0.75 },
+          { "key": "M", "label": "Mozzarella", "amount": 150 },
+          { "key": "Pv", "label": "sweet pepper", "amount": 0.5 },
+          { "key": "C", "label": "shrimps", "amount": 0.75 }
+        ]
+      },
+      {
+        "size": 30,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1 },
+          { "key": "M", "label": "Mozzarella", "amount": 200 },
+          { "key": "Pv", "label": "sweet pepper", "amount": 0.75 },
+          { "key": "C", "label": "shrimps", "amount": 1 }
+        ]
+      },
+      {
+        "size": 35,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1.5 },
+          { "key": "M", "label": "Mozzarella", "amount": 300 },
+          { "key": "Pv", "label": "sweet pepper", "amount": 1 },
+          { "key": "C", "label": "shrimps", "amount": 1.5 }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Mix de viande",
+    "sizes": [
+      {
+        "size": 25,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 0.75 },
+          { "key": "M", "label": "Mozzarella", "amount": 150 },
+          { "key": "T", "label": "diced tomatoes", "amount": 0.5 },
+          { "key": "Pl", "label": "Chicken", "amount": 0.5 },
+          { "key": "P", "label": "Pepperoni - Spicy (slice)", "amount": 10 },
+          { "key": "V", "label": "Minced meat", "amount": 0.5 }
+        ]
+      },
+      {
+        "size": 30,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1 },
+          { "key": "M", "label": "Mozzarella", "amount": 200 },
+          { "key": "T", "label": "diced tomatoes", "amount": 0.75 },
+          { "key": "Pl", "label": "Chicken", "amount": 0.75 },
+          { "key": "P", "label": "Pepperoni - Spicy (slice)", "amount": 14 },
+          { "key": "V", "label": "Minced meat", "amount": 0.75 }
+        ]
+      },
+      {
+        "size": 35,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1.5 },
+          { "key": "M", "label": "Mozzarella", "amount": 300 },
+          { "key": "T", "label": "diced tomatoes", "amount": 1 },
+          { "key": "Pl", "label": "Chicken", "amount": 1 },
+          { "key": "P", "label": "Pepperoni - Spicy (slice)", "amount": 20 },
+          { "key": "V", "label": "Minced meat", "amount": 1 }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Fruits de mer",
+    "sizes": [
+      {
+        "size": 25,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 0.75 },
+          { "key": "M", "label": "Mozzarella", "amount": 150 },
+          { "key": "FM", "label": "Sea food", "amount": 1 }
+        ]
+      },
+      {
+        "size": 30,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1 },
+          { "key": "M", "label": "Mozzarella", "amount": 200 },
+          { "key": "FM", "label": "Sea food", "amount": 1.5 }
+        ]
+      },
+      {
+        "size": 35,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1.5 },
+          { "key": "M", "label": "Mozzarella", "amount": 300 },
+          { "key": "FM", "label": "Sea food", "amount": 2 }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Végitarienne",
+    "sizes": [
+      {
+        "size": 25,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 0.75 },
+          { "key": "M", "label": "Mozzarella", "amount": 150 },
+          { "key": "T", "label": "diced tomatoes", "amount": 0.5 },
+          { "key": "Pv", "label": "sweet pepper", "amount": 0.5 },
+          { "key": "O", "label": "red onion", "amount": 0.5 },
+          { "key": "HI", "label": "Herbes italiennes", "amount": 6 }
+        ]
+      },
+      {
+        "size": 30,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1 },
+          { "key": "M", "label": "Mozzarella", "amount": 200 },
+          { "key": "T", "label": "diced tomatoes", "amount": 0.75 },
+          { "key": "Pv", "label": "sweet pepper", "amount": 0.75 },
+          { "key": "O", "label": "red onion", "amount": 0.75 },
+          { "key": "HI", "label": "Herbes italiennes", "amount": 8 }
+        ]
+      },
+      {
+        "size": 35,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1.5 },
+          { "key": "M", "label": "Mozzarella", "amount": 300 },
+          { "key": "T", "label": "diced tomatoes", "amount": 1 },
+          { "key": "Pv", "label": "sweet pepper", "amount": 1 },
+          { "key": "O", "label": "red onion", "amount": 1 },
+          { "key": "HI", "label": "Herbes italiennes", "amount": 10 }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Pepperoni",
+    "sizes": [
+      {
+        "size": 25,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 0.75 },
+          { "key": "M", "label": "Mozzarella", "amount": 225 },
+          { "key": "P", "label": "Pepperoni - Spicy (slice)", "amount": 14 }
+        ]
+      },
+      {
+        "size": 30,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1 },
+          { "key": "M", "label": "Mozzarella", "amount": 300 },
+          { "key": "P", "label": "Pepperoni - Spicy (slice)", "amount": 19 }
+        ]
+      },
+      {
+        "size": 35,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1.5 },
+          { "key": "M", "label": "Mozzarella", "amount": 450 },
+          { "key": "P", "label": "Pepperoni - Spicy (slice)", "amount": 24 }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Anchovis",
+    "sizes": [
+      {
+        "size": 25,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 0.75 },
+          { "key": "M", "label": "Mozzarella", "amount": 150 },
+          { "key": "An", "label": "anchovis", "amount": 16 },
+          { "key": "cap", "label": "capres", "amount": 0.5 },
+          { "key": "HO", "label": "Olive oil", "amount": 6 }
+        ]
+      },
+      {
+        "size": 30,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1 },
+          { "key": "M", "label": "Mozzarella", "amount": 200 },
+          { "key": "An", "label": "anchovis", "amount": 24 },
+          { "key": "ON", "label": "Black olive", "amount": 0.5 },
+          { "key": "cap", "label": "capres", "amount": 1 },
+          { "key": "HO", "label": "Olive oil", "amount": 8 }
+        ]
+      },
+      {
+        "size": 35,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1.5 },
+          { "key": "M", "label": "Mozzarella", "amount": 300 },
+          { "key": "An", "label": "anchovis", "amount": 32 },
+          { "key": "ON", "label": "Black olive", "amount": 0.75 },
+          { "key": "cap", "label": "capres", "amount": 1.5 },
+          { "key": "HO", "label": "Olive oil", "amount": 10 }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Végitarienne champignons",
+    "sizes": [
+      {
+        "size": 25,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 0.75 },
+          { "key": "M", "label": "Mozzarella", "amount": 150 },
+          { "key": "T", "label": "diced tomatoes", "amount": 0.5 },
+          { "key": "Pv", "label": "sweet pepper", "amount": 0.5 },
+          { "key": "O", "label": "red onion", "amount": 0.5 },
+          { "key": "ch", "label": "Mushroom", "amount": 1 },
+          { "key": "HI", "label": "Herbes italiennes", "amount": 6 }
+        ]
+      },
+      {
+        "size": 30,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1 },
+          { "key": "M", "label": "Mozzarella", "amount": 200 },
+          { "key": "T", "label": "diced tomatoes", "amount": 0.75 },
+          { "key": "Pv", "label": "sweet pepper", "amount": 0.75 },
+          { "key": "O", "label": "red onion", "amount": 0.75 },
+          { "key": "ch", "label": "Mushroom", "amount": 1.5 },
+          { "key": "Br", "label": "bryndza", "amount": 0.75 },
+          { "key": "HI", "label": "Herbes italiennes", "amount": 8 }
+        ]
+      },
+      {
+        "size": 35,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1.5 },
+          { "key": "M", "label": "Mozzarella", "amount": 300 },
+          { "key": "T", "label": "diced tomatoes", "amount": 1 },
+          { "key": "Pv", "label": "sweet pepper", "amount": 1 },
+          { "key": "O", "label": "red onion", "amount": 1 },
+          { "key": "ch", "label": "Mushroom", "amount": 2 },
+          { "key": "Br", "label": "bryndza", "amount": 1 },
+          { "key": "HI", "label": "Herbes italiennes", "amount": 10 }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Pepperoni & Légume",
+    "sizes": [
+      {
+        "size": 25,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 0.75 },
+          { "key": "M", "label": "Mozzarella", "amount": 225 },
+          { "key": "T", "label": "diced tomatoes", "amount": 0.5 },
+          { "key": "P", "label": "Pepperoni - Spicy (slice)", "amount": 10 }
+        ]
+      },
+      {
+        "size": 30,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1 },
+          { "key": "M", "label": "Mozzarella", "amount": 300 },
+          { "key": "T", "label": "diced tomatoes", "amount": 0.75 },
+          { "key": "P", "label": "Pepperoni - Spicy (slice)", "amount": 14 }
+        ]
+      },
+      {
+        "size": 35,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1.5 },
+          { "key": "M", "label": "Mozzarella", "amount": 450 },
+          { "key": "T", "label": "diced tomatoes", "amount": 1 },
+          { "key": "P", "label": "Pepperoni - Spicy (slice)", "amount": 20 }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Tuna",
+    "sizes": [
+      {
+        "size": 25,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 0.75 },
+          { "key": "M", "label": "Mozzarella", "amount": 150 },
+          { "key": "Tn", "label": "Tuna", "amount": 0.75 },
+          { "key": "ON", "label": "Black olive", "amount": 0.25 },
+          { "key": "Bc", "label": "basilique", "amount": 1 }
+        ]
+      },
+      {
+        "size": 30,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1 },
+          { "key": "M", "label": "Mozzarella", "amount": 200 },
+          { "key": "Tn", "label": "Tuna", "amount": 1 },
+          { "key": "ON", "label": "Black olive", "amount": 0.5 },
+          { "key": "Bc", "label": "basilique", "amount": 1.5 }
+        ]
+      },
+      {
+        "size": 35,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1.5 },
+          { "key": "M", "label": "Mozzarella", "amount": 300 },
+          { "key": "Tn", "label": "Tuna", "amount": 1.5 },
+          { "key": "ON", "label": "Black olive", "amount": 0.75 },
+          { "key": "Bc", "label": "basilique", "amount": 2 }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Poulet & légume",
+    "sizes": [
+      {
+        "size": 25,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 0.75 },
+          { "key": "M", "label": "Mozzarella", "amount": 150 },
+          { "key": "T", "label": "diced tomatoes", "amount": 0.5 },
+          { "key": "Pv", "label": "sweet pepper", "amount": 0.5 },
+          { "key": "O", "label": "red onion", "amount": 0.5 },
+          { "key": "Pl", "label": "Chicken", "amount": 0.5 }
+        ]
+      },
+      {
+        "size": 30,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1 },
+          { "key": "M", "label": "Mozzarella", "amount": 200 },
+          { "key": "T", "label": "diced tomatoes", "amount": 0.75 },
+          { "key": "Pv", "label": "sweet pepper", "amount": 0.75 },
+          { "key": "O", "label": "red onion", "amount": 0.75 },
+          { "key": "Pl", "label": "Chicken", "amount": 0.75 }
+        ]
+      },
+      {
+        "size": 35,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1.5 },
+          { "key": "M", "label": "Mozzarella", "amount": 300 },
+          { "key": "T", "label": "diced tomatoes", "amount": 1 },
+          { "key": "Pv", "label": "sweet pepper", "amount": 1 },
+          { "key": "O", "label": "red onion", "amount": 1 },
+          { "key": "Pl", "label": "Chicken", "amount": 1 }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Merguez",
+    "sizes": [
+      {
+        "size": 25,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 0.75 },
+          { "key": "M", "label": "Mozzarella", "amount": 150 },
+          { "key": "Pv", "label": "sweet pepper", "amount": 0.5 },
+          { "key": "Z", "label": "merguez", "amount": 0.75 },
+          { "key": "ON", "label": "Black olive", "amount": 0.25 }
+        ]
+      },
+      {
+        "size": 30,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1 },
+          { "key": "M", "label": "Mozzarella", "amount": 200 },
+          { "key": "Pv", "label": "sweet pepper", "amount": 0.75 },
+          { "key": "Z", "label": "merguez", "amount": 1 },
+          { "key": "ON", "label": "Black olive", "amount": 0.75 }
+        ]
+      },
+      {
+        "size": 35,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1.5 },
+          { "key": "M", "label": "Mozzarella", "amount": 300 },
+          { "key": "Pv", "label": "sweet pepper", "amount": 1 },
+          { "key": "Z", "label": "merguez", "amount": 1.5 },
+          { "key": "ON", "label": "Black olive", "amount": 0.75 }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Poulet barbecue",
+    "sizes": [
+      {
+        "size": 25,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 0.75 },
+          { "key": "M", "label": "Mozzarella", "amount": 150 },
+          { "key": "O", "label": "red onion", "amount": 0.5 },
+          { "key": "Pl", "label": "Chicken", "amount": 0.5 },
+          { "key": "S", "label": "salame chicken (slice)", "amount": 10 },
+          { "key": "BB", "label": "Barbecue sauce", "amount": 8 }
+        ]
+      },
+      {
+        "size": 30,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1 },
+          { "key": "M", "label": "Mozzarella", "amount": 200 },
+          { "key": "O", "label": "red onion", "amount": 0.75 },
+          { "key": "Pl", "label": "Chicken", "amount": 0.75 },
+          { "key": "S", "label": "salame chicken (slice)", "amount": 14 },
+          { "key": "BB", "label": "Barbecue sauce", "amount": 10 }
+        ]
+      },
+      {
+        "size": 35,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1.5 },
+          { "key": "M", "label": "Mozzarella", "amount": 300 },
+          { "key": "O", "label": "red onion", "amount": 1 },
+          { "key": "Pl", "label": "Chicken", "amount": 1 },
+          { "key": "S", "label": "salame chicken (slice)", "amount": 20 },
+          { "key": "BB", "label": "Barbecue sauce", "amount": 12 }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Viande hachée",
+    "sizes": [
+      {
+        "size": 25,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 0.75 },
+          { "key": "M", "label": "Mozzarella", "amount": 150 },
+          { "key": "V", "label": "Minced meat", "amount": 0.75 }
+        ]
+      },
+      {
+        "size": 30,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1 },
+          { "key": "M", "label": "Mozzarella", "amount": 200 },
+          { "key": "V", "label": "Minced meat", "amount": 1 }
+        ]
+      },
+      {
+        "size": 35,
+        "ingredients": [
+          { "key": "ST", "label": "Tomato Sauce", "amount": 1.5 },
+          { "key": "M", "label": "Mozzarella", "amount": 300 },
+          { "key": "V", "label": "Minced meat", "amount": 1.5 }
+        ]
+      }
+    ]
+  }
+]
