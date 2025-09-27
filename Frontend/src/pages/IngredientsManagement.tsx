@@ -9,15 +9,14 @@ import {
   X
 } from 'lucide-react';
 import { 
-  BarChart, 
   Bar, 
   XAxis, 
   YAxis, 
   CartesianGrid, 
   ResponsiveContainer,
-  Tooltip,
   ComposedChart
 } from 'recharts';
+import { calculateIngredientScale } from '../utils/chartUtils';
 
 const IngredientsManagement: React.FC = () => {
   const [selectedIngredient, setSelectedIngredient] = useState<string | null>(null);
@@ -43,6 +42,9 @@ const IngredientsManagement: React.FC = () => {
   ];
 
   const usageData = activeTab === 'Daily' ? dailyUsageData : weeklyUsageData;
+
+  // Calculate dynamic scale for the usage chart
+  const usageScale = calculateIngredientScale(usageData);
 
   // Table Data
   const tableData = [
@@ -224,7 +226,7 @@ const IngredientsManagement: React.FC = () => {
                     axisLine={false} 
                     tickLine={false} 
                   />
-                  <YAxis axisLine={false} tickLine={false} domain={[0, 125]} ticks={[0, 25, 50, 75, 100, 125]} />
+                  <YAxis axisLine={false} tickLine={false} domain={usageScale.domain} ticks={usageScale.ticks} />
                   {/* Past days: solid orange bar */}
                   <Bar dataKey="solidOrange" fill="#E23A00" radius={[0, 0, 0, 0]} maxBarSize={8} />
                   {/* Past days: dotted gray bar */}

@@ -93,64 +93,6 @@ const StaffManagement: React.FC = () => {
     bar: <Coffee className="inline w-4 h-4 mr-1 text-brown-600" />,
   };
 
-  // Generate today's config
-  const generateBestConfig = () => {
-    const today = new Date();
-    const formattedDate = today.toISOString().split("T")[0];
-
-    return [{
-      date: formattedDate,
-      shifts: [
-        {
-          name: "Day (8am-4pm)",
-          roles: {
-            dough: 1,
-            topping: 1,
-            cashier: 1,
-            waiter: 1,
-            delivery: 1,
-            packaging: 1,
-            bar: 1,
-          },
-        },
-        {
-          name: "Night (4pm-1am)",
-          roles: {
-            dough: 2,
-            topping: 2,
-            cashier: 2,
-            waiter: 3,
-            delivery: 2,
-            packaging: 2,
-            bar: 2,
-          },
-        },
-      ],
-    }];
-  };
-
-  // Generate today's assignment
-  const generateBestAssignment = () => {
-    const today = new Date();
-    const formattedDate = today.toISOString().split("T")[0];
-
-    const dayShift: Record<string, string[]> = {
-      dough: ["Youssef", "Karim"],
-      topping: ["Khaled", "Hassan"],
-      cashier: ["Nour", "Amel"],
-      waiter: ["Rania", "Samir", "Salima"],
-      delivery: ["Salem", "Nadia"],
-      packaging: ["Ahmed", "Leila"],
-      bar: ["Zineb", "Omar"],
-    };
-
-    return [{
-      date: formattedDate,
-      day: dayShift,
-      night: dayShift,
-    }];
-  };
-
   return (
     <div className="staff-management">
       {/* Search and Filter Bar */}
