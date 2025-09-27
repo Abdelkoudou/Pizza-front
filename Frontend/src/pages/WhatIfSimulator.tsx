@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { 
   Calculator, 
   TrendingUp, 
@@ -10,8 +10,6 @@ import {
   AlertTriangle
 } from 'lucide-react';
 import { 
-  LineChart,
-  Line,
   XAxis, 
   YAxis, 
   CartesianGrid, 
@@ -52,7 +50,7 @@ const WhatIfSimulator: React.FC = () => {
     { name: 'Perfect', value: 'perfect', impact: 1.4, description: 'Ideal weather for dining out' }
   ];
 
-  const generateForecastData = (baseOrders: number, scenario: any) => {
+  const generateForecastData = useCallback((baseOrders: number, scenario: any) => {
     const data = [];
     const today = new Date();
     
@@ -91,9 +89,9 @@ const WhatIfSimulator: React.FC = () => {
     }
     
     return data;
-  };
+  }, []);
 
-  const calculateScenario = () => {
+  const calculateScenario = useCallback(() => {
     // Simulate calculations based on scenario inputs
     const baseRevenue = 12500;
     const baseOrders = 340;
@@ -125,7 +123,7 @@ const WhatIfSimulator: React.FC = () => {
       efficiency: newOrders / baseStaff,
       forecastData
     });
-  };
+  }, [scenario, generateForecastData]);
 
   const scenarios = [
     {
@@ -170,7 +168,7 @@ const WhatIfSimulator: React.FC = () => {
         debounceTimer.current = null;
       }
     };
-  }, [scenario]);
+  }, [scenario, calculateScenario]);
 
   return (
     <div className="what-if-simulator">

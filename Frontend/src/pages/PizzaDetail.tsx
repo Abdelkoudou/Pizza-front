@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { ArrowLeft, Edit, Pizza } from 'lucide-react';
 import pizzaImage from '../pizza image.png';
 import { 
@@ -11,7 +11,8 @@ import {
   AreaChart
 } from 'recharts';
 import { apiService, dataUtils } from '../utils/api';
-import { getPizzaByName, calculateIngredientRequirements } from '../utils/pizzaData';
+import { getPizzaByName } from '../utils/pizzaData';
+import { calculateIngredientScale } from '../utils/chartUtils';
 
 interface PizzaDetailProps {
   pizza: {
@@ -30,13 +31,11 @@ const PizzaDetail: React.FC<PizzaDetailProps> = ({ pizza, onBack }) => {
   const [ingredientForecasts, setIngredientForecasts] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
 
-  // Load forecast data when component mounts or pizza changes
-  useEffect(() => {
-    loadForecastData();
-    loadIngredientForecasts();
-  }, [pizza.name, activeTab]);
+  // Calculate dynamic scale for the forecast chart
+  const forecastScale = calculateIngredientScale(forecastData);
 
-  const loadForecastData = async () => {
+  // Define functions before useEffect to avoid hoisting issues
+  const loadForecastData = useCallback(async () => {
     setLoading(true);
     try {
       // Generate sample forecast data based on the selected timeframe
@@ -105,9 +104,147 @@ const PizzaDetail: React.FC<PizzaDetailProps> = ({ pizza, onBack }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [activeTab, pizza.name]);
 
-  const loadIngredientForecasts = async () => {
+  const loadIngredientForecasts = useCallback(async () => {
+    try {
+      const dates = [dataUtils.formatDateForAPI(dataUtils.getTomorrowDate())];
+      const predictions = await apiService.getDailyIngredientPredictions(dates);
+      
+      if (predictions.length > 0) {
+        const ingredientPredictions = predictions[0].predictions;
+        
+        // Get the pizza's actual ingredients
+        const pizzaData = getPizzaByName(pizza.name);
+        const actualIngredients: any[] = [];
+        
+        if (pizzaData && pizzaData.sizes.length > 0) {
+          // Use the medium size (30cm) as default
+          const mediumSize = pizzaData.sizes.find(s => s.size === 30) || pizzaData.sizes[1] || pizzaData.sizes[0];
+          mediumSize.ingredients.forEach(ingredient => {
+            // Try to find matching prediction by ingredient name
+            let forecastValue = 0;
+            const ingredientName = ingredient.label.toLowerCase();
+            
+            Object.entries(ingredientPredictions).forEach(([key, value]) => {
+              const keyLower = key.toLowerCase();
+              // Check for partial matches (ingredient names might not match exactly)
+              if (keyLower.includes(ingredientName) || 
+                  ingredientName.includes(keyLower.split(' ')[0]) ||
+                  (ingredientName.includes('tomato') && keyLower.includes('sauce tomate')) ||
+                  (ingredientName.includes('mozzarella') && keyLower.includes('mozzarella')) ||
+                  (ingredientName.includes('pepper') && keyLower.includes('pepper'))) {
+                forecastValue = Math.max(forecastValue, typeof value === 'number' ? value : 0);
+              }
+            });
+            
+            actualIngredients.push({
+              name: ingredient.label,
+              price: `${Math.round(ingredient.amount * 10)} DA`,
+              image: pizzaImage,
+              forecast: Math.round(forecastValue)
+            });
+          });
+        } else {
+          // Fallback to static toppings if pizza data not found
+          actualIngredients.push(
+            { name: 'Câpres', price: '20 DA', image: pizzaImage, forecast: Math.round(ingredientPredictions['Capres'] || 18) },
+            { name: 'Champignons', price: '170 DA', image: pizzaImage, forecast: Math.round(ingredientPredictions['Champignons'] || 65) },
+            { name: 'Gruyère', price: '100 DA', image: pizzaImage, forecast: Math.round(ingredientPredictions['Gruyere'] || 68) },
+            { name: 'Herbes italiennes', price: '0 DA', image: pizzaImage, forecast: Math.round(ingredientPredictions['Herbes de Provence'] || 68) },
+            { name: 'Huile d\'olive', price: '0 DA', image: pizzaImage, forecast: Math.round(ingredientPredictions['Huile d\'Olive'] || 67) },
+            { name: 'Poulet', price: '160 DA', image: pizzaImage, forecast: Math.round(ingredientPredictions['Double Chicken 30\''] || 25) }
+          );
+        }
+        
+        setIngredientForecasts(actualIngredients);
+      }
+    } catch (error) {
+      console.error('Failed to load ingredient forecasts:', error);
+    }
+  }, [pizza.name]);
+
+  // Load forecast data when component mounts or pizza changes
+  useEffect(() => {
+    const loadData = async () => {
+      await loadForecastData();
+      await loadIngredientForecasts();
+    };
+    loadData();
+  }, [loadForecastData, loadIngredientForecasts]);
+
+  const loadForecastData = useCallback(async () => {
+    setLoading(true);
+    try {
+      // Generate sample forecast data based on the selected timeframe
+      if (activeTab === 'Daily') {
+        const dates = Array.from({length: 7}, (_, i) => {
+          const date = new Date();
+          date.setDate(date.getDate() - 2 + i); // 2 days past, 5 days future
+          return dataUtils.formatDateForAPI(date);
+        });
+        
+        const sampleContext = [{
+          date: dates[0],
+          temp_min_c: 18,
+          temp_max_c: 28,
+          humidity_pct: 60,
+          wind_kph: 12,
+          precip_mm: 0.2,
+          precip_prob: 30
+        }];
+
+        const predictions = await apiService.getDailyPredictions(dates, sampleContext);
+        
+        // Transform to chart data
+        const chartData = predictions.map((pred, index) => {
+          const date = new Date(pred.date || dates[index]);
+          const dayName = date.toLocaleDateString('en', {weekday: 'short'});
+          const isPast = index < 2;
+          const isFuture = index >= 2;
+          
+          // Simulate pizza-specific orders (roughly 30% of total orders for this pizza)
+          const pizzaOrders = Math.round(pred.predicted_orders * 0.3);
+          
+          return {
+            day: dayName,
+            actual: isPast ? pizzaOrders : 0,
+            predicted: isFuture ? pizzaOrders : 0,
+            past: isPast ? pizzaOrders : 0
+          };
+        });
+        
+        setForecastData(chartData);
+      } else {
+        // Weekly data
+        const weeks = Array.from({length: 4}, (_, i) => {
+          const date = new Date();
+          date.setDate(date.getDate() + (i * 7));
+          return dataUtils.formatDateForAPI(date);
+        });
+        
+        const predictions = await apiService.getWeeklyPredictions(weeks);
+        
+        const chartData = predictions.map((pred, index) => {
+          const weekOrders = Math.round(pred.predicted_orders * 0.3);
+          return {
+            week: `Week ${index + 1}`,
+            actual: index === 0 ? weekOrders : 0,
+            predicted: index > 0 ? weekOrders : 0,
+            past: index === 0 ? weekOrders : 0
+          };
+        });
+        
+        setForecastData(chartData);
+      }
+    } catch (error) {
+      console.error('Failed to load forecast data:', error);
+    } finally {
+      setLoading(false);
+    }
+  }, [activeTab, pizza.name]);
+
+  const loadIngredientForecasts = useCallback(async () => {
     try {
       const dates = [dataUtils.formatDateForAPI(dataUtils.getTomorrowDate())];
       const predictions = await apiService.getDailyIngredientPredictions(dates);
@@ -163,7 +300,7 @@ const PizzaDetail: React.FC<PizzaDetailProps> = ({ pizza, onBack }) => {
     } catch (error) {
       console.error('Failed to load ingredient forecasts:', error);
     }
-  };
+  }, [pizza.name]);
 
   return (
     <div className="pizza-detail-page">
@@ -240,7 +377,7 @@ const PizzaDetail: React.FC<PizzaDetailProps> = ({ pizza, onBack }) => {
                 <AreaChart data={forecastData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
                   <XAxis dataKey={activeTab === 'Daily' ? 'day' : 'week'} axisLine={false} tickLine={false} />
-                  <YAxis axisLine={false} tickLine={false} domain={[0, 125]} ticks={[0, 25, 50, 75, 100, 125]} />
+                  <YAxis axisLine={false} tickLine={false} domain={forecastScale.domain} ticks={forecastScale.ticks} />
                   <Tooltip 
                     formatter={(value: any, name: string) => [
                       `${value}`, 

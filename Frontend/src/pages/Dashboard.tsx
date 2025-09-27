@@ -15,15 +15,19 @@ import {
   Cell
 } from 'recharts';
 import { apiService, dataUtils, OrderPrediction, IngredientPrediction, WeeklyIngredientPrediction } from '../utils/api';
+import { calculateOrderScale, calculateIngredientScale } from '../utils/chartUtils';
 
 const Dashboard: React.FC = () => {
   const [orderTimeframe, setOrderTimeframe] = useState('Weekly');
   const [ingredientsTimeframe, setIngredientsTimeframe] = useState('Weekly');
   const [orderData, setOrderData] = useState<any[]>([]);
   const [ingredientsData, setIngredientsData] = useState<any[]>([]);
-  const [totalOrders, setTotalOrders] = useState(0);
   const [mostForecastedIngredient, setMostForecastedIngredient] = useState<{ name: string; value: number }>({ name: '', value: 0 });
   const [loading, setLoading] = useState(false);
+
+  // Calculate dynamic scales
+  const orderScale = calculateOrderScale(orderData, orderTimeframe);
+  const ingredientScale = calculateIngredientScale(ingredientsData);
 
   // Realtime Users Data
   const realtimeData = [
@@ -99,10 +103,6 @@ const Dashboard: React.FC = () => {
       });
 
       setOrderData(chartData);
-      
-      // Calculate total orders
-      const total = predictions.reduce((sum, pred) => sum + pred.predicted_orders, 0);
-      setTotalOrders(Math.round(total));
 
     } catch (error) {
       console.error('Failed to load order data:', error);
@@ -252,8 +252,8 @@ const Dashboard: React.FC = () => {
                 <YAxis 
                   axisLine={false} 
                   tickLine={false} 
-                  domain={orderTimeframe === 'Hourly' ? [0, 15000] : orderTimeframe === 'Daily' ? [0, 70000] : [0, 200000]} 
-                  ticks={orderTimeframe === 'Hourly' ? [0, 5000, 10000, 15000] : orderTimeframe === 'Daily' ? [0, 20000, 40000, 60000, 80000] : [0, 50000, 100000, 150000, 200000]} 
+                  domain={orderScale.domain} 
+                  ticks={orderScale.ticks} 
                 />
                 <Tooltip 
                   formatter={(value: any, name: string) => [
@@ -362,7 +362,7 @@ const Dashboard: React.FC = () => {
                   axisLine={false} 
                   tickLine={false} 
                 />
-                <YAxis axisLine={false} tickLine={false} domain={[0, 125]} ticks={[0, 25, 50, 75, 100, 125]} />
+                <YAxis axisLine={false} tickLine={false} domain={ingredientScale.domain} ticks={ingredientScale.ticks} />
                 <Tooltip 
                   formatter={(value: any, name: string) => [
                     `${value}`, 
