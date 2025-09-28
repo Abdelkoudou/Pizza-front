@@ -88,6 +88,9 @@ export interface Translations {
   totalDailyCost: string;
   morningShift: string;
   nightShift: string;
+  staffText: string;
+  forecastOrders: string;
+  totalCost: string;
 
   // Staff roles
   dough: string;
@@ -210,6 +213,9 @@ export const englishTranslations: Translations = {
   totalDailyCost: "Total Daily Cost",
   morningShift: "Morning Shift",
   nightShift: "Night Shift",
+  staffText: "staff",
+  forecastOrders: "Forecast Orders",
+  totalCost: "Total Cost",
 
   // Staff roles
   dough: "dough",
@@ -332,6 +338,9 @@ export const frenchTranslations: Translations = {
   totalDailyCost: "Coût total quotidien",
   morningShift: "Équipe du matin",
   nightShift: "Équipe de nuit",
+  staffText: "personnel",
+  forecastOrders: "Commandes prévues",
+  totalCost: "Coût total",
 
   // Staff roles
   dough: "pâte",
