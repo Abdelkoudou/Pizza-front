@@ -121,6 +121,10 @@ const MenuManagement: React.FC = () => {
   const [loadingTomorrow, setLoadingTomorrow] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // New: sorting state (descending by orders by default)
+  const [sortDirection, setSortDirection] = useState<'desc' | 'asc'>('desc');
+  const [sortMetric, setSortMetric] = useState<'today' | 'name'>('today');
+
   const loading = loadingDaily || loadingWeekly || loadingTomorrow;
 
   // Fetch daily window
@@ -175,7 +179,7 @@ const MenuManagement: React.FC = () => {
     run();
   }, []);
 
-  // Fetch tomorrow ingredient predictions once (shared cache)
+  // Fetch tomorrow ingredient predictions once
   useEffect(() => {
     const run = async () => {
       setLoadingTomorrow(true);
@@ -211,7 +215,6 @@ const MenuManagement: React.FC = () => {
     }
     const groups: Record<string, Group> = {};
 
-    // Prefer weekly keys for coverage
     const collectSources: (DailyPredRecord | WeeklyPredRecord)[] = [...weeklyRecords, ...dailyWindowRecords];
 
     collectSources.forEach(rec => {
@@ -248,21 +251,23 @@ const MenuManagement: React.FC = () => {
     const todayRecord = dailyWindowRecords.find(r => r.date === todayStr);
     let idCounter = 1;
 
-    return Object.entries(groupedPizzas).map(([cKey, group]) => {
+    const items = Object.entries(groupedPizzas).map(([cKey, group]) => {
       let todaySum = 0;
       if (todayRecord) {
         group.variantKeys.forEach(k => {
           const v = todayRecord.predictions?.[k];
-            if (typeof v === 'number') todaySum += v;
+          if (typeof v === 'number') todaySum += v;
         });
       }
       todaySum = Math.max(0, Math.round(todaySum));
+
       const staticEntry = staticMap[cKey] ||
         staticPizzas.find(p =>
           canonicalKey(p.name) === cKey ||
           canonicalKey(p.name).includes(cKey) ||
           cKey.includes(canonicalKey(p.name))
         );
+
       const sizes = group.sizes.size
         ? Array.from(group.sizes).sort()
         : (staticEntry ? staticEntry.sizes : ['S', 'M', 'L']);
@@ -280,8 +285,33 @@ const MenuManagement: React.FC = () => {
         variantKeys: Array.from(group.variantKeys),
         todayForecast: todaySum
       };
-    }).sort((a, b) => a.name.localeCompare(b.name));
-  }, [groupedPizzas, dailyWindowRecords, staticMap, staticPizzas]);
+    });
+
+    // ----------- Sorting Logic -----------
+    // sortMetric = 'today': sort by todayForecast; fallback to name
+    // sortMetric = 'name': alphabetical
+    items.sort((a, b) => {
+      if (sortMetric === 'today') {
+        const av = a.todayForecast ?? 0;
+        const bv = b.todayForecast ?? 0;
+        if (av !== bv) {
+          return sortDirection === 'desc'
+            ? bv - av
+            : av - bv;
+        }
+        // fallback by name
+        return a.name.localeCompare(b.name);
+      } else {
+        // name sorting
+        return sortDirection === 'desc'
+          ? b.name.localeCompare(a.name)
+          : a.name.localeCompare(b.name);
+      }
+    });
+    // -------------------------------------
+
+    return items;
+  }, [groupedPizzas, dailyWindowRecords, staticMap, staticPizzas, sortMetric, sortDirection]);
 
   const categories = [
     'Pizza',
@@ -336,7 +366,29 @@ const MenuManagement: React.FC = () => {
         </div>
 
         <div className="menu-section">
-          <h2>Classic</h2>
+          <div className="menu-section-header">
+            <h2>Classic</h2>
+            <div className="sorting-controls">
+              <label className="sorting-label">Sort by:</label>
+              <select
+                value={sortMetric}
+                onChange={e => setSortMetric(e.target.value as any)}
+                className="sorting-select"
+                disabled={loading}
+              >
+                <option value="today">Today Orders</option>
+                <option value="name">Name</option>
+              </select>
+              <button
+                className="sort-direction-btn"
+                onClick={() => setSortDirection(d => d === 'desc' ? 'asc' : 'desc')}
+                disabled={loading}
+                title="Toggle direction"
+              >
+                {sortDirection === 'desc' ? '↓' : '↑'}
+              </button>
+            </div>
+          </div>
           <div className="menu-grid">
             {!loading && menuItems.map((item) => (
               <div
@@ -387,6 +439,49 @@ const MenuManagement: React.FC = () => {
 
       <style>
         {`
+        .menu-section-header {
+          display: flex;
+          align-items: flex-end;
+          justify-content: space-between;
+          margin-bottom: 1rem;
+          gap: 1rem;
+          flex-wrap: wrap;
+        }
+        .sorting-controls {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+        .sorting-label {
+          font-size: 0.85rem;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          opacity: 0.7;
+        }
+        .sorting-select {
+          padding: 4px 8px;
+          border: 1px solid #ddd;
+          border-radius: 6px;
+          background: #fff;
+          font-size: 0.85rem;
+          cursor: pointer;
+        }
+        .sorting-select:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+        .sort-direction-btn {
+          padding: 4px 8px;
+          border: 1px solid #ddd;
+          border-radius: 6px;
+          background: #fafafa;
+          font-size: 0.85rem;
+          cursor: pointer;
+          line-height: 1;
+        }
+        .sort-direction-btn:hover:not(:disabled) {
+          background: #f0f0f0;
+        }
         .loading-overlay {
           position: fixed;
           inset: 0;
