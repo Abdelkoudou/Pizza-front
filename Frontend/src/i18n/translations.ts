@@ -78,6 +78,16 @@ export interface Translations {
   loadingForecasts: string;
   addNewItemsPlus: string;
 
+  // Ingredients Management specific
+  kind: string;
+  priceDelta: string;
+  stock: string;
+  noIngredientsAvailable: string;
+  predictedAverageNeed: string;
+  unitsPerDay: string;
+  predicted: string;
+  noPredictionData: string;
+
   // Staff Management specific
   staffPlanning: string;
   bestStaffConfiguration: string;
@@ -203,6 +213,16 @@ export const englishTranslations: Translations = {
   loadingForecasts: "Loading forecasts...",
   addNewItemsPlus: "Add New Items +",
 
+  // Ingredients Management specific
+  kind: "Kind",
+  priceDelta: "Price Delta",
+  stock: "Stock",
+  noIngredientsAvailable: "No ingredients available.",
+  predictedAverageNeed: "Predicted Average Need",
+  unitsPerDay: "units/day",
+  predicted: "Predicted",
+  noPredictionData: "No prediction data for this ingredient.",
+
   // Staff Management specific
   staffPlanning: "Staff Planning",
   bestStaffConfiguration: "Best Staff Configuration",
@@ -327,6 +347,16 @@ export const frenchTranslations: Translations = {
   failedToFetch: "Échec de récupération",
   loadingForecasts: "Chargement des prévisions...",
   addNewItemsPlus: "Ajouter nouveaux articles +",
+
+  // Ingredients Management specific
+  kind: "Type",
+  priceDelta: "Écart de prix",
+  stock: "Stock",
+  noIngredientsAvailable: "Aucun ingrédient disponible.",
+  predictedAverageNeed: "Besoin moyen prévu",
+  unitsPerDay: "unités/jour",
+  predicted: "Prévu",
+  noPredictionData: "Aucune donnée de prévision pour cet ingrédient.",
 
   // Staff Management specific
   staffPlanning: "Planification du personnel",
