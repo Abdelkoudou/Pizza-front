@@ -34,6 +34,26 @@ export interface Translations {
   weeklyOrders: string;
   dailyIngredients: string;
   bestPerformance: string;
+  ordersToday: string;
+  activeStaff: string;
+  statistics: string;
+  orderForecasting: string;
+  hourly: string;
+  daily: string;
+  weekly: string;
+  usageAnalytics: string;
+  ingredientsItemsUsage: string;
+  salesAnalytics: string;
+  mostSellingItems: string;
+  alerts: string;
+  highForecast: string;
+  units: string;
+  highDrop: string;
+  loadingForecastData: string;
+  others: string;
+  pastUsage: string;
+  historical: string;
+  forecast: string;
 
   // Menu Management specific
   pizza: string;
@@ -125,6 +145,26 @@ export const englishTranslations: Translations = {
   weeklyOrders: "Weekly Orders",
   dailyIngredients: "Daily Ingredients",
   bestPerformance: "Best Performance",
+  ordersToday: "Orders today",
+  activeStaff: "Active staff",
+  statistics: "Statistics",
+  orderForecasting: "Order Forecasting",
+  hourly: "Hourly",
+  daily: "Daily",
+  weekly: "Weekly",
+  usageAnalytics: "Usage Analytics",
+  ingredientsItemsUsage: "Ingredients & Items Usage",
+  salesAnalytics: "Sales Analytics",
+  mostSellingItems: "Most Selling Items",
+  alerts: "Alerts",
+  highForecast: "High Forecast",
+  units: "units",
+  highDrop: "High Drop",
+  loadingForecastData: "Loading forecast data...",
+  others: "Others",
+  pastUsage: "Past Usage",
+  historical: "Historical",
+  forecast: "Forecast",
 
   // Menu Management specific
   pizza: "Pizza",
@@ -216,6 +256,26 @@ export const frenchTranslations: Translations = {
   weeklyOrders: "Commandes hebdomadaires",
   dailyIngredients: "Ingrédients quotidiens",
   bestPerformance: "Meilleure performance",
+  ordersToday: "Commandes aujourd'hui",
+  activeStaff: "Personnel actif",
+  statistics: "Statistiques",
+  orderForecasting: "Prévision des commandes",
+  hourly: "Horaire",
+  daily: "Quotidien",
+  weekly: "Hebdomadaire",
+  usageAnalytics: "Analytiques d'utilisation",
+  ingredientsItemsUsage: "Utilisation des ingrédients et articles",
+  salesAnalytics: "Analytiques des ventes",
+  mostSellingItems: "Articles les plus vendus",
+  alerts: "Alertes",
+  highForecast: "Prévision élevée",
+  units: "unités",
+  highDrop: "Chute élevée",
+  loadingForecastData: "Chargement des données de prévision...",
+  others: "Autres",
+  pastUsage: "Utilisation passée",
+  historical: "Historique",
+  forecast: "Prévision",
 
   // Menu Management specific
   pizza: "Pizza",
