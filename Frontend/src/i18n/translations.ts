@@ -119,6 +119,53 @@ export interface Translations {
   revenue: string;
   orders: string;
   staffNeeded: string;
+  simulationParameters: string;
+  whatIfScenarios: string;
+  priceChange: string;
+  marketingBudget: string;
+  events: string;
+  weather: string;
+  calculateScenario: string;
+  quickScenarios: string;
+  predefinedScenarios: string;
+  projectedOutcomes: string;
+  efficiency: string;
+  ordersPerStaff: string;
+  fixedAtPeople: string;
+  orderForecast: string;
+  sevenDayOrderProjection: string;
+  forecastedOrders: string;
+  baseOrders: string;
+  applyScenario: string;
+
+  // What-If Events
+  none: string;
+  localFestival: string;
+  sportsGame: string;
+  concert: string;
+  wedding: string;
+
+  // What-If Weather  
+  normal: string;
+  sunnyHot: string;
+  cold: string;
+  perfect: string;
+
+  // What-If Predefined Scenarios
+  festivalWeekend: string;
+  stormyDay: string;
+  festivalWeekendDesc: string;
+  stormyDayDesc: string;
+  sportsGameDesc: string;
+
+  // Days of week
+  sun: string;
+  mon: string;
+  tue: string;
+  wed: string;
+  thu: string;
+  fri: string;
+  sat: string;
 
   // Weather conditions
   sunny: string;
@@ -254,6 +301,53 @@ export const englishTranslations: Translations = {
   revenue: "Revenue",
   orders: "Orders",
   staffNeeded: "Staff Needed",
+  simulationParameters: "Simulation Parameters",
+  whatIfScenarios: "What-If Scenarios",
+  priceChange: "Price Change",
+  marketingBudget: "Marketing Budget",
+  events: "Events",
+  weather: "Weather",
+  calculateScenario: "Calculate Scenario",
+  quickScenarios: "Quick Scenarios",
+  predefinedScenarios: "Predefined Scenarios",
+  projectedOutcomes: "Projected Outcomes",
+  efficiency: "Efficiency",
+  ordersPerStaff: "orders/staff",
+  fixedAtPeople: "Fixed at 8 people",
+  orderForecast: "Order Forecast",
+  sevenDayOrderProjection: "7-Day Order Projection",
+  forecastedOrders: "Forecasted Orders",
+  baseOrders: "Base Orders",
+  applyScenario: "Apply Scenario",
+
+  // What-If Events
+  none: "None",
+  localFestival: "Local Festival",
+  sportsGame: "Sports Game",
+  concert: "Concert",
+  wedding: "Wedding",
+
+  // What-If Weather  
+  normal: "Normal",
+  sunnyHot: "Sunny & Hot",
+  cold: "Cold",
+  perfect: "Perfect",
+
+  // What-If Predefined Scenarios
+  festivalWeekend: "Festival Weekend",
+  stormyDay: "Stormy Day",
+  festivalWeekendDesc: "Local festival event, perfect weather, increase marketing by $800",
+  stormyDayDesc: "Stormy weather, no events, reduce prices by 10%, increase marketing by $300",
+  sportsGameDesc: "Big game day, sunny weather, increase marketing by $600",
+
+  // Days of week
+  sun: "Sun",
+  mon: "Mon",
+  tue: "Tue",
+  wed: "Wed",
+  thu: "Thu",
+  fri: "Fri",
+  sat: "Sat",
 
   // Weather conditions
   sunny: "Sunny",
@@ -389,6 +483,53 @@ export const frenchTranslations: Translations = {
   revenue: "Revenus",
   orders: "Commandes",
   staffNeeded: "Personnel nécessaire",
+  simulationParameters: "Paramètres de simulation",
+  whatIfScenarios: "Scénarios What-If",
+  priceChange: "Changement de prix",
+  marketingBudget: "Budget marketing",
+  events: "Événements",
+  weather: "Météo",
+  calculateScenario: "Calculer le scénario",
+  quickScenarios: "Scénarios rapides",
+  predefinedScenarios: "Scénarios prédéfinis",
+  projectedOutcomes: "Résultats projetés",
+  efficiency: "Efficacité",
+  ordersPerStaff: "commandes/personnel",
+  fixedAtPeople: "Fixé à 8 personnes",
+  orderForecast: "Prévision des commandes",
+  sevenDayOrderProjection: "Projection des commandes sur 7 jours",
+  forecastedOrders: "Commandes prévues",
+  baseOrders: "Commandes de base",
+  applyScenario: "Appliquer le scénario",
+
+  // What-If Events
+  none: "Aucun",
+  localFestival: "Festival local",
+  sportsGame: "Match sportif",
+  concert: "Concert",
+  wedding: "Mariage",
+
+  // What-If Weather  
+  normal: "Normal",
+  sunnyHot: "Ensoleillé et chaud",
+  cold: "Froid",
+  perfect: "Parfait",
+
+  // What-If Predefined Scenarios
+  festivalWeekend: "Week-end de festival",
+  stormyDay: "Jour d'orage",
+  festivalWeekendDesc: "Événement de festival local, temps parfait, augmentation du marketing de 800$",
+  stormyDayDesc: "Temps orageux, pas d'événements, réduction des prix de 10%, augmentation du marketing de 300$",
+  sportsGameDesc: "Grande journée de match, temps ensoleillé, augmentation du marketing de 600$",
+
+  // Days of week
+  sun: "Dim",
+  mon: "Lun",
+  tue: "Mar",
+  wed: "Mer",
+  thu: "Jeu",
+  fri: "Ven",
+  sat: "Sam",
 
   // Weather conditions
   sunny: "Ensoleillé",
