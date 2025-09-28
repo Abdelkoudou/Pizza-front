@@ -4,6 +4,7 @@ import pizzaImage from '../pizza image.png';
 import SearchContainer from '../components/SearchContainer';
 import PizzaDetail from './PizzaDetail';
 import { getMenuPizzas } from '../utils/pizzaData';
+import { useTranslations } from '../i18n';
 
 interface MenuItem {
   id: number;
@@ -108,6 +109,7 @@ function canonicalKey(base: string): string {
 }
 
 const MenuManagement: React.FC = () => {
+  const t = useTranslations();
   const [selectedCategory, setSelectedCategory] = useState('Pizza');
   const [selectedPizza, setSelectedPizza] = useState<MenuItem | null>(null);
 
@@ -314,14 +316,14 @@ const MenuManagement: React.FC = () => {
   }, [groupedPizzas, dailyWindowRecords, staticMap, staticPizzas, sortMetric, sortDirection]);
 
   const categories = [
-    'Pizza',
-    'Soft Drinks',
-    'Hot Drinks',
-    'Desserts',
-    'Salads',
-    'Gelatos',
-    'Other Drinks',
-    'Bakeries'
+    { key: 'Pizza', label: t.pizza },
+    { key: 'Soft Drinks', label: t.softDrinks },
+    { key: 'Hot Drinks', label: t.hotDrinks },
+    { key: 'Desserts', label: t.desserts },
+    { key: 'Salads', label: t.salads },
+    { key: 'Gelatos', label: t.gelatos },
+    { key: 'Other Drinks', label: t.otherDrinks },
+    { key: 'Bakeries', label: t.bakeries }
   ];
 
   if (selectedPizza) {
@@ -343,41 +345,41 @@ const MenuManagement: React.FC = () => {
       {loading && (
         <div className="loading-overlay">
           <div className="spinner" />
-          <span>Loading forecasts...</span>
+          <span>{t.loadingForecasts}</span>
         </div>
       )}
 
       <div className={`content-grid ${loading ? 'blurred' : ''}`}>
         <div className="categories-section">
-          <h2>Categories</h2>
+          <h2>{t.categories}</h2>
           <div className="categories-divider"></div>
           <ul className="category-list">
             {categories.map((category) => (
               <li
-                key={category}
-                className={`category-item ${selectedCategory === category ? 'active' : ''}`}
-                onClick={() => setSelectedCategory(category)}
+                key={category.key}
+                className={`category-item ${selectedCategory === category.key ? 'active' : ''}`}
+                onClick={() => setSelectedCategory(category.key)}
               >
-                {category}
+                {category.label}
               </li>
             ))}
           </ul>
-          {error && <div className="error-text small">{error}</div>}
+          {error && <div className="error-text small">{t.failedToFetch}: {error}</div>}
         </div>
 
         <div className="menu-section">
           <div className="menu-section-header">
-            <h2>Classic</h2>
+            <h2>{t.classic}</h2>
             <div className="sorting-controls">
-              <label className="sorting-label">Sort by:</label>
+              <label className="sorting-label">{t.sortBy}</label>
               <select
                 value={sortMetric}
                 onChange={e => setSortMetric(e.target.value as any)}
                 className="sorting-select"
                 disabled={loading}
               >
-                <option value="today">Today Orders</option>
-                <option value="name">Name</option>
+                <option value="today">{t.todayOrders}</option>
+                <option value="name">{t.name}</option>
               </select>
               <button
                 className="sort-direction-btn"
@@ -422,7 +424,7 @@ const MenuManagement: React.FC = () => {
                 {item.todayForecast !== undefined && (
                   <div className="menu-item-prices">
                     <span className="price small">
-                      Today: {item.todayForecast}
+                      {t.today}: {item.todayForecast}
                     </span>
                   </div>
                 )}
@@ -430,7 +432,7 @@ const MenuManagement: React.FC = () => {
             ))}
             {!loading && menuItems.length === 0 && (
               <div className="empty-state">
-                No pizza forecast data available.
+                {t.noPizzaForecastData}
               </div>
             )}
           </div>

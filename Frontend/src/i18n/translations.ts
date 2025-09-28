@@ -66,6 +66,17 @@ export interface Translations {
   addNewMenu: string;
   viewDetails: string;
   todaysForecast: string;
+  categories: string;
+  otherDrinks: string;
+  bakeries: string;
+  classic: string;
+  sortBy: string;
+  todayOrders: string;
+  name: string;
+  noPizzaForecastData: string;
+  failedToFetch: string;
+  loadingForecasts: string;
+  addNewItemsPlus: string;
 
   // Staff Management specific
   staffPlanning: string;
@@ -177,6 +188,17 @@ export const englishTranslations: Translations = {
   addNewMenu: "Add New Menu +",
   viewDetails: "View Details",
   todaysForecast: "Today's Forecast",
+  categories: "Categories",
+  otherDrinks: "Other Drinks",
+  bakeries: "Bakeries",
+  classic: "Classic",
+  sortBy: "Sort by:",
+  todayOrders: "Today Orders",
+  name: "Name",
+  noPizzaForecastData: "No pizza forecast data available.",
+  failedToFetch: "Failed to fetch",
+  loadingForecasts: "Loading forecasts...",
+  addNewItemsPlus: "Add New Items +",
 
   // Staff Management specific
   staffPlanning: "Staff Planning",
@@ -288,6 +310,17 @@ export const frenchTranslations: Translations = {
   addNewMenu: "Ajouter nouveau menu +",
   viewDetails: "Voir les détails",
   todaysForecast: "Prévision d'aujourd'hui",
+  categories: "Catégories",
+  otherDrinks: "Autres boissons",
+  bakeries: "Boulangerie",
+  classic: "Classique",
+  sortBy: "Trier par:",
+  todayOrders: "Commandes d'aujourd'hui",
+  name: "Nom",
+  noPizzaForecastData: "Aucune donnée de prévision de pizza disponible.",
+  failedToFetch: "Échec de récupération",
+  loadingForecasts: "Chargement des prévisions...",
+  addNewItemsPlus: "Ajouter nouveaux articles +",
 
   // Staff Management specific
   staffPlanning: "Planification du personnel",
