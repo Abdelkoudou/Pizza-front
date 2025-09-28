@@ -17,6 +17,7 @@ import {
   ComposedChart,
   Tooltip
 } from 'recharts';
+import { useTranslations } from '../i18n';
 
 // =============================================
 // Config
@@ -69,6 +70,7 @@ type ChartDatum = {
 // Component
 // =============================================
 const IngredientsManagement: React.FC = () => {
+  const t = useTranslations();
   const [loadingDaily, setLoadingDaily] = useState(false);
   const [loadingWeekly, setLoadingWeekly] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -239,25 +241,25 @@ const IngredientsManagement: React.FC = () => {
           <div className="search-filter-left">
             <button className="control-button">
               <Calendar className="nav-icon" />
-              Today
+              {t.today}
             </button>
             <button className="control-button">
               <Filter className="nav-icon" />
             </button>
             <div className="search-input-group">
               <Search className="nav-icon" />
-              <input type="text" placeholder="Q Search" />
+              <input type="text" placeholder={t.searchPlaceholder} />
             </div>
           </div>
           <button className="add-button" disabled>
             <Plus className="nav-icon" />
-            Add New Items +
+            {t.addNew} Items +
           </button>
         </div>
 
         {(error) && (
           <div className="status-bar">
-            <span className="error-text">Error: {error}</span>
+            <span className="error-text">{t.errorMessage} {error}</span>
           </div>
         )}
 
@@ -347,13 +349,13 @@ const IngredientsManagement: React.FC = () => {
                     className={`tab-button ${activeTab === 'Daily' ? 'active' : ''}`}
                     onClick={() => setActiveTab('Daily')}
                   >
-                    Daily
+                    {t.daily}
                   </button>
                   <button
                     className={`tab-button ${activeTab === 'Weekly' ? 'active' : ''}`}
                     onClick={() => setActiveTab('Weekly')}
                   >
-                    Weekly
+                    {t.weekly}
                   </button>
                 </div>
               </div>

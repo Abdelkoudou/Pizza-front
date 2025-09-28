@@ -169,6 +169,15 @@ export interface Translations {
   quickScenarios: string;
   applyScenario: string;
   simulationParameters: string;
+  
+  // MenuManagement additional translations
+  loadingForecasts: string;
+  categories: string;
+  classic: string;
+  sortBy: string;
+  todayOrders: string;
+  name: string;
+  noPizzaForecastDataAvailable: string;
 }
 
 export const englishTranslations: Translations = {
@@ -342,6 +351,15 @@ export const englishTranslations: Translations = {
   quickScenarios: "Quick Scenarios",
   applyScenario: "Apply Scenario",
   simulationParameters: "Simulation Parameters",
+  
+  // MenuManagement additional translations
+  loadingForecasts: "Loading forecasts...",
+  categories: "Categories",
+  classic: "Classic",
+  sortBy: "Sort by:",
+  todayOrders: "Today Orders",
+  name: "Name",
+  noPizzaForecastDataAvailable: "No pizza forecast data available.",
 };
 
 export const frenchTranslations: Translations = {
@@ -515,4 +533,13 @@ export const frenchTranslations: Translations = {
   quickScenarios: "Scénarios rapides",
   applyScenario: "Appliquer le scénario",
   simulationParameters: "Paramètres de simulation",
+  
+  // MenuManagement additional translations
+  loadingForecasts: "Chargement des prévisions...",
+  categories: "Catégories",
+  classic: "Classique",
+  sortBy: "Trier par:",
+  todayOrders: "Commandes d'aujourd'hui",
+  name: "Nom",
+  noPizzaForecastDataAvailable: "Aucune donnée de prévision de pizza disponible.",
 };

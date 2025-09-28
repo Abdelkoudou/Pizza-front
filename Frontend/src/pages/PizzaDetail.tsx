@@ -11,6 +11,7 @@ import {
   AreaChart
 } from 'recharts';
 import { getPizzaByName } from '../utils/pizzaData';
+import { useTranslations } from '../i18n';
 // import { apiService, dataUtils } from '../utils/api'; // still used for fallback ingredient mapping helpers
 
 interface PizzaDetailProps {
@@ -71,6 +72,7 @@ const PizzaDetail: React.FC<PizzaDetailProps> = ({
   precomputedWeeklyRecords,
   ingredientPredictionsTomorrow
 }) => {
+  const t = useTranslations();
   const [activeTab, setActiveTab] = useState<'Daily' | 'Weekly'>('Daily');
   const [forecastData, setForecastData] = useState<(ForecastPointDaily | ForecastPointWeekly)[]>([]);
   const [ingredientForecasts, setIngredientForecasts] = useState<IngredientForecast[]>([]);
@@ -270,13 +272,13 @@ const PizzaDetail: React.FC<PizzaDetailProps> = ({
                   className={`tab-button ${activeTab === 'Daily' ? 'active' : ''}`}
                   onClick={() => setActiveTab('Daily')}
                 >
-                  Daily
+                  {t.daily}
                 </button>
                 <button
                   className={`tab-button ${activeTab === 'Weekly' ? 'active' : ''}`}
                   onClick={() => setActiveTab('Weekly')}
                 >
-                  Weekly
+                  {t.weekly}
                 </button>
               </div>
             </div>
