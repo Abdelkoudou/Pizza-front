@@ -15,22 +15,24 @@ import {
   Cell
 } from 'recharts';
 import { apiService, dataUtils, OrderPrediction, IngredientPrediction, WeeklyIngredientPrediction } from '../utils/api';
+import { useTranslations } from '../i18n';
 
 const Dashboard: React.FC = () => {
+  const t = useTranslations();
   const [orderTimeframe, setOrderTimeframe] = useState('Weekly');
   const [ingredientsTimeframe, setIngredientsTimeframe] = useState('Weekly');
   const [orderData, setOrderData] = useState<any[]>([]);
   const [ingredientsData, setIngredientsData] = useState<any[]>([]);
-  const [totalOrders, setTotalOrders] = useState(0);
+  // const [totalOrders, setTotalOrders] = useState(0);
   const [mostForecastedIngredient, setMostForecastedIngredient] = useState<{ name: string; value: number }>({ name: '', value: 0 });
   const [loading, setLoading] = useState(false);
 
   // Realtime Users Data
   const realtimeData = [
-    { label: 'Realtime users', value: 635, change: '+21.01%', trend: 'up' },
-    { label: 'Orders today', value: 124, change: '+5.2%', trend: 'up' },
-    { label: 'Revenue', value: '$12,450', change: '+8.3%', trend: 'up' },
-    { label: 'Active staff', value: 8, change: '+2', trend: 'up' }
+    { label: t.realtimeUsers, value: 635, change: '+21.01%', trend: 'up' },
+    { label: t.ordersToday, value: 124, change: '+5.2%', trend: 'up' },
+    { label: t.revenue, value: '$12,450', change: '+8.3%', trend: 'up' },
+    { label: t.activeStaff, value: 8, change: '+2', trend: 'up' }
   ];
 
   // Load data from API
@@ -101,9 +103,9 @@ const Dashboard: React.FC = () => {
 
       setOrderData(chartData);
       
-      // Calculate total orders
-      const total = predictions.reduce((sum, pred) => sum + pred.predicted_orders, 0);
-      setTotalOrders(Math.round(total));
+      // Calculate total orders (currently unused)
+      // const total = predictions.reduce((sum, pred) => sum + pred.predicted_orders, 0);
+      // setTotalOrders(Math.round(total));
 
     } catch (error) {
       console.error('Failed to load order data:', error);
@@ -198,27 +200,27 @@ const Dashboard: React.FC = () => {
         <div className="order-forecasting-card">
           <div className="card-header">
             <div className="card-title-section">
-              <div className="card-subtitle">Statistics</div>
-              <h2 className="card-title">Order Forecasting</h2>
+              <div className="card-subtitle">{t.statistics}</div>
+              <h2 className="card-title">{t.orderForecasting}</h2>
             </div>
             <div className="timeframe-tabs">
               <button 
                 className={`tab-button ${orderTimeframe === 'Hourly' ? 'active' : ''}`}
                 onClick={() => handleOrderTimeframeChange('Hourly')}
               >
-                Hourly
+                {t.hourly}
               </button>
               <button 
                 className={`tab-button ${orderTimeframe === 'Daily' ? 'active' : ''}`}
                 onClick={() => handleOrderTimeframeChange('Daily')}
               >
-                Daily
+                {t.daily}
               </button>
               <button 
                 className={`tab-button ${orderTimeframe === 'Weekly' ? 'active' : ''}`}
                 onClick={() => handleOrderTimeframeChange('Weekly')}
               >
-                Weekly
+                {t.weekly}
               </button>
             </div>
           </div>
@@ -226,15 +228,15 @@ const Dashboard: React.FC = () => {
           <div className="chart-legend">
             <div className="legend-item">
               <div className="legend-dot pizza"></div>
-              <span>Pizza</span>
+              <span>{t.pizza}</span>
             </div>
             <div className="legend-item">
               <div className="legend-dot bar" style={{backgroundColor: '#FF4500'}}></div>
-              <span>Bar</span>
+              <span>{t.bar}</span>
             </div>
             <div className="legend-item">
               <div className="legend-dot others" style={{backgroundColor: '#FF6B35'}}></div>
-              <span>Others</span>
+              <span>{t.others}</span>
             </div>
           </div>
 
@@ -264,7 +266,7 @@ const Dashboard: React.FC = () => {
                 <Tooltip 
                   formatter={(value: any, name: string) => [
                     `${value.toLocaleString()}`, 
-                    name === 'pizza' ? 'Pizza' : name === 'bar' ? 'Bar' : 'Others'
+                    name === 'pizza' ? t.pizza : name === 'bar' ? t.bar : t.others
                   ]}
                   labelStyle={{ color: '#333' }}
                   contentStyle={{ 
@@ -316,19 +318,19 @@ const Dashboard: React.FC = () => {
 
         {/* Alerts Card */}
         <div className="alerts-card">
-          <h3 className="alerts-title">Alerts</h3>
+          <h3 className="alerts-title">{t.alerts}</h3>
           <div className="alert-item">
             <AlertTriangle className="alert-icon" />
             <span className="alert-text">
               {mostForecastedIngredient.name ? 
-                `${mostForecastedIngredient.name} High Forecast (${Math.round(mostForecastedIngredient.value)} units)` : 
-                'Tomato Sauce High Drop'
+                `${mostForecastedIngredient.name} ${t.highForecast} (${Math.round(mostForecastedIngredient.value)} ${t.units})` : 
+                t.tomatoSauceHighDrop
               }
             </span>
           </div>
           {loading && (
             <div className="alert-item">
-              <span className="alert-text">Loading forecast data...</span>
+              <span className="alert-text">{t.loadingForecastData}</span>
             </div>
           )}
         </div>
@@ -340,21 +342,21 @@ const Dashboard: React.FC = () => {
         <div className="ingredients-chart-card">
           <div className="card-header">
             <div className="card-title-section">
-              <div className="card-subtitle">Usage Analytics</div>
-              <h2 className="card-title">Ingredients & Items Usage</h2>
+              <div className="card-subtitle">{t.usageAnalytics}</div>
+              <h2 className="card-title">{t.ingredientsItemsUsage}</h2>
             </div>
             <div className="timeframe-tabs">
               <button 
                 className={`tab-button ${ingredientsTimeframe === 'Daily' ? 'active' : ''}`}
                 onClick={() => handleIngredientsTimeframeChange('Daily')}
               >
-                Daily
+                {t.daily}
               </button>
               <button 
                 className={`tab-button ${ingredientsTimeframe === 'Weekly' ? 'active' : ''}`}
                 onClick={() => handleIngredientsTimeframeChange('Weekly')}
               >
-                Weekly
+                {t.weekly}
               </button>
             </div>
           </div>

@@ -13,8 +13,10 @@ import {
   User,
 } from "lucide-react";
 import { apiService, dataUtils } from '../utils/api';
+import { useTranslations } from '../i18n';
 
 const StaffManagement: React.FC = () => {
+  const t = useTranslations();
   const [config, setConfig] = useState<any[] | null>(null);
   const [assignment, setAssignment] = useState<any[] | null>(null);
   const [loading, setLoading] = useState(false);          // main loading
@@ -33,7 +35,7 @@ const StaffManagement: React.FC = () => {
       setLoading(true);
       await fn();
     } catch (e: any) {
-      setError(e.message || 'Unexpected error');
+      setError(e.message || t.error);
     } finally {
       setPartial(false);
       setLoading(false);
@@ -96,7 +98,7 @@ const StaffManagement: React.FC = () => {
       {loading && (
         <div className="loading-overlay">
           <div className="spinner" />
-          <span>Loading...</span>
+          <span>{t.loading}</span>
         </div>
       )}
 
@@ -105,40 +107,40 @@ const StaffManagement: React.FC = () => {
           <div className="search-filter-left">
             <button className="control-button">
               <Calendar className="nav-icon" />
-              Today
+              {t.today}
             </button>
             <button className="control-button">
               <Filter className="nav-icon" />
             </button>
             <div className="search-input-group">
               <Search className="nav-icon" />
-              <input type="text" placeholder="Q Search" />
+              <input type="text" placeholder={t.searchPlaceholder} />
             </div>
           </div>
           <button className="add-button">
             <Plus className="nav-icon" />
-            Add New Staff +
+            {t.addNewStaffPlus}
           </button>
         </div>
 
         {error && (
           <div className="status-bar">
-            <span className="error-text">Error: {error}</span>
+            <span className="error-text">{t.errorMessage} {error}</span>
           </div>
         )}
 
         <div className="staff-card">
           <div className="card-header">
             <div className="card-title-section">
-              <div className="card-subtitle">Staff Planning</div>
-              <h2 className="card-title">Best Staff Configuration</h2>
+              <div className="card-subtitle">{t.staffPlanning}</div>
+              <h2 className="card-title">{t.bestStaffConfiguration}</h2>
             </div>
             <button
               className="add-button"
               onClick={loadStaffConfig}
               disabled={loadingConfig}
             >
-              {loadingConfig ? 'Loading...' : 'Get Best Config'}
+              {loadingConfig ? t.loadingMessage : t.getBestConfig}
             </button>
           </div>
           <div className="card-body">
@@ -182,15 +184,15 @@ const StaffManagement: React.FC = () => {
         <div className="staff-card">
           <div className="card-header">
             <div className="card-title-section">
-              <div className="card-subtitle">Staff Planning</div>
-              <h2 className="card-title">Best Staff Assignment</h2>
+              <div className="card-subtitle">{t.staffPlanning}</div>
+              <h2 className="card-title">{t.staffAssignment}</h2>
             </div>
             <button
               className="add-button"
               onClick={loadStaffAssignment}
               disabled={loadingAssign}
             >
-              {loadingAssign ? 'Loading...' : 'Get Best Assignment'}
+              {loadingAssign ? t.loadingMessage : t.getBestAssignment}
             </button>
           </div>
           <div className="card-body">
@@ -215,7 +217,7 @@ const StaffManagement: React.FC = () => {
                     )}
                     <div className="shift-assignment">
                       <p className="shift-title">
-                        Morning Shift (Forecast Orders: {day.morningOrders ?? '—'})
+                        {t.morningShiftForecastOrders} {day.morningOrders ?? '—'})
                       </p>
                       <div className="roles-grid">
                         {Object.entries(day.day as Record<string, string[]>).map(([role, people]) => (
@@ -229,7 +231,7 @@ const StaffManagement: React.FC = () => {
                     </div>
                     <div className="shift-assignment">
                       <p className="shift-title">
-                        Night Shift (Forecast Orders: {day.nightOrders ?? '—'})
+                        {t.nightShiftForecastOrders} {day.nightOrders ?? '—'})
                       </p>
                       <div className="roles-grid">
                         {Object.entries(day.night as Record<string, string[]>).map(([role, people]) => (
