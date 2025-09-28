@@ -34,6 +34,26 @@ export interface Translations {
   weeklyOrders: string;
   dailyIngredients: string;
   bestPerformance: string;
+  ordersToday: string;
+  activeStaff: string;
+  statistics: string;
+  orderForecasting: string;
+  hourly: string;
+  daily: string;
+  weekly: string;
+  usageAnalytics: string;
+  ingredientsItemsUsage: string;
+  salesAnalytics: string;
+  mostSellingItems: string;
+  alerts: string;
+  highForecast: string;
+  units: string;
+  highDrop: string;
+  loadingForecastData: string;
+  others: string;
+  pastUsage: string;
+  historical: string;
+  forecast: string;
 
   // Menu Management specific
   pizza: string;
@@ -46,6 +66,27 @@ export interface Translations {
   addNewMenu: string;
   viewDetails: string;
   todaysForecast: string;
+  categories: string;
+  otherDrinks: string;
+  bakeries: string;
+  classic: string;
+  sortBy: string;
+  todayOrders: string;
+  name: string;
+  noPizzaForecastData: string;
+  failedToFetch: string;
+  loadingForecasts: string;
+  addNewItemsPlus: string;
+
+  // Ingredients Management specific
+  kind: string;
+  priceDelta: string;
+  stock: string;
+  noIngredientsAvailable: string;
+  predictedAverageNeed: string;
+  unitsPerDay: string;
+  predicted: string;
+  noPredictionData: string;
 
   // Staff Management specific
   staffPlanning: string;
@@ -57,6 +98,9 @@ export interface Translations {
   totalDailyCost: string;
   morningShift: string;
   nightShift: string;
+  staffText: string;
+  forecastOrders: string;
+  totalCost: string;
 
   // Staff roles
   dough: string;
@@ -75,6 +119,53 @@ export interface Translations {
   revenue: string;
   orders: string;
   staffNeeded: string;
+  simulationParameters: string;
+  whatIfScenarios: string;
+  priceChange: string;
+  marketingBudget: string;
+  events: string;
+  weather: string;
+  calculateScenario: string;
+  quickScenarios: string;
+  predefinedScenarios: string;
+  projectedOutcomes: string;
+  efficiency: string;
+  ordersPerStaff: string;
+  fixedAtPeople: string;
+  orderForecast: string;
+  sevenDayOrderProjection: string;
+  forecastedOrders: string;
+  baseOrders: string;
+  applyScenario: string;
+
+  // What-If Events
+  none: string;
+  localFestival: string;
+  sportsGame: string;
+  concert: string;
+  wedding: string;
+
+  // What-If Weather  
+  normal: string;
+  sunnyHot: string;
+  cold: string;
+  perfect: string;
+
+  // What-If Predefined Scenarios
+  festivalWeekend: string;
+  stormyDay: string;
+  festivalWeekendDesc: string;
+  stormyDayDesc: string;
+  sportsGameDesc: string;
+
+  // Days of week
+  sun: string;
+  mon: string;
+  tue: string;
+  wed: string;
+  thu: string;
+  fri: string;
+  sat: string;
 
   // Weather conditions
   sunny: string;
@@ -125,6 +216,26 @@ export const englishTranslations: Translations = {
   weeklyOrders: "Weekly Orders",
   dailyIngredients: "Daily Ingredients",
   bestPerformance: "Best Performance",
+  ordersToday: "Orders today",
+  activeStaff: "Active staff",
+  statistics: "Statistics",
+  orderForecasting: "Order Forecasting",
+  hourly: "Hourly",
+  daily: "Daily",
+  weekly: "Weekly",
+  usageAnalytics: "Usage Analytics",
+  ingredientsItemsUsage: "Ingredients & Items Usage",
+  salesAnalytics: "Sales Analytics",
+  mostSellingItems: "Most Selling Items",
+  alerts: "Alerts",
+  highForecast: "High Forecast",
+  units: "units",
+  highDrop: "High Drop",
+  loadingForecastData: "Loading forecast data...",
+  others: "Others",
+  pastUsage: "Past Usage",
+  historical: "Historical",
+  forecast: "Forecast",
 
   // Menu Management specific
   pizza: "Pizza",
@@ -137,6 +248,27 @@ export const englishTranslations: Translations = {
   addNewMenu: "Add New Menu +",
   viewDetails: "View Details",
   todaysForecast: "Today's Forecast",
+  categories: "Categories",
+  otherDrinks: "Other Drinks",
+  bakeries: "Bakeries",
+  classic: "Classic",
+  sortBy: "Sort by:",
+  todayOrders: "Today Orders",
+  name: "Name",
+  noPizzaForecastData: "No pizza forecast data available.",
+  failedToFetch: "Failed to fetch",
+  loadingForecasts: "Loading forecasts...",
+  addNewItemsPlus: "Add New Items +",
+
+  // Ingredients Management specific
+  kind: "Kind",
+  priceDelta: "Price Delta",
+  stock: "Stock",
+  noIngredientsAvailable: "No ingredients available.",
+  predictedAverageNeed: "Predicted Average Need",
+  unitsPerDay: "units/day",
+  predicted: "Predicted",
+  noPredictionData: "No prediction data for this ingredient.",
 
   // Staff Management specific
   staffPlanning: "Staff Planning",
@@ -148,6 +280,9 @@ export const englishTranslations: Translations = {
   totalDailyCost: "Total Daily Cost",
   morningShift: "Morning Shift",
   nightShift: "Night Shift",
+  staffText: "staff",
+  forecastOrders: "Forecast Orders",
+  totalCost: "Total Cost",
 
   // Staff roles
   dough: "dough",
@@ -166,6 +301,53 @@ export const englishTranslations: Translations = {
   revenue: "Revenue",
   orders: "Orders",
   staffNeeded: "Staff Needed",
+  simulationParameters: "Simulation Parameters",
+  whatIfScenarios: "What-If Scenarios",
+  priceChange: "Price Change",
+  marketingBudget: "Marketing Budget",
+  events: "Events",
+  weather: "Weather",
+  calculateScenario: "Calculate Scenario",
+  quickScenarios: "Quick Scenarios",
+  predefinedScenarios: "Predefined Scenarios",
+  projectedOutcomes: "Projected Outcomes",
+  efficiency: "Efficiency",
+  ordersPerStaff: "orders/staff",
+  fixedAtPeople: "Fixed at 8 people",
+  orderForecast: "Order Forecast",
+  sevenDayOrderProjection: "7-Day Order Projection",
+  forecastedOrders: "Forecasted Orders",
+  baseOrders: "Base Orders",
+  applyScenario: "Apply Scenario",
+
+  // What-If Events
+  none: "None",
+  localFestival: "Local Festival",
+  sportsGame: "Sports Game",
+  concert: "Concert",
+  wedding: "Wedding",
+
+  // What-If Weather  
+  normal: "Normal",
+  sunnyHot: "Sunny & Hot",
+  cold: "Cold",
+  perfect: "Perfect",
+
+  // What-If Predefined Scenarios
+  festivalWeekend: "Festival Weekend",
+  stormyDay: "Stormy Day",
+  festivalWeekendDesc: "Local festival event, perfect weather, increase marketing by $800",
+  stormyDayDesc: "Stormy weather, no events, reduce prices by 10%, increase marketing by $300",
+  sportsGameDesc: "Big game day, sunny weather, increase marketing by $600",
+
+  // Days of week
+  sun: "Sun",
+  mon: "Mon",
+  tue: "Tue",
+  wed: "Wed",
+  thu: "Thu",
+  fri: "Fri",
+  sat: "Sat",
 
   // Weather conditions
   sunny: "Sunny",
@@ -216,6 +398,26 @@ export const frenchTranslations: Translations = {
   weeklyOrders: "Commandes hebdomadaires",
   dailyIngredients: "Ingrédients quotidiens",
   bestPerformance: "Meilleure performance",
+  ordersToday: "Commandes aujourd'hui",
+  activeStaff: "Personnel actif",
+  statistics: "Statistiques",
+  orderForecasting: "Prévision des commandes",
+  hourly: "Horaire",
+  daily: "Quotidien",
+  weekly: "Hebdomadaire",
+  usageAnalytics: "Analytiques d'utilisation",
+  ingredientsItemsUsage: "Utilisation des ingrédients et articles",
+  salesAnalytics: "Analytiques des ventes",
+  mostSellingItems: "Articles les plus vendus",
+  alerts: "Alertes",
+  highForecast: "Prévision élevée",
+  units: "unités",
+  highDrop: "Chute élevée",
+  loadingForecastData: "Chargement des données de prévision...",
+  others: "Autres",
+  pastUsage: "Utilisation passée",
+  historical: "Historique",
+  forecast: "Prévision",
 
   // Menu Management specific
   pizza: "Pizza",
@@ -228,6 +430,27 @@ export const frenchTranslations: Translations = {
   addNewMenu: "Ajouter nouveau menu +",
   viewDetails: "Voir les détails",
   todaysForecast: "Prévision d'aujourd'hui",
+  categories: "Catégories",
+  otherDrinks: "Autres boissons",
+  bakeries: "Boulangerie",
+  classic: "Classique",
+  sortBy: "Trier par:",
+  todayOrders: "Commandes d'aujourd'hui",
+  name: "Nom",
+  noPizzaForecastData: "Aucune donnée de prévision de pizza disponible.",
+  failedToFetch: "Échec de récupération",
+  loadingForecasts: "Chargement des prévisions...",
+  addNewItemsPlus: "Ajouter nouveaux articles +",
+
+  // Ingredients Management specific
+  kind: "Type",
+  priceDelta: "Écart de prix",
+  stock: "Stock",
+  noIngredientsAvailable: "Aucun ingrédient disponible.",
+  predictedAverageNeed: "Besoin moyen prévu",
+  unitsPerDay: "unités/jour",
+  predicted: "Prévu",
+  noPredictionData: "Aucune donnée de prévision pour cet ingrédient.",
 
   // Staff Management specific
   staffPlanning: "Planification du personnel",
@@ -239,6 +462,9 @@ export const frenchTranslations: Translations = {
   totalDailyCost: "Coût total quotidien",
   morningShift: "Équipe du matin",
   nightShift: "Équipe de nuit",
+  staffText: "personnel",
+  forecastOrders: "Commandes prévues",
+  totalCost: "Coût total",
 
   // Staff roles
   dough: "pâte",
@@ -257,6 +483,53 @@ export const frenchTranslations: Translations = {
   revenue: "Revenus",
   orders: "Commandes",
   staffNeeded: "Personnel nécessaire",
+  simulationParameters: "Paramètres de simulation",
+  whatIfScenarios: "Scénarios What-If",
+  priceChange: "Changement de prix",
+  marketingBudget: "Budget marketing",
+  events: "Événements",
+  weather: "Météo",
+  calculateScenario: "Calculer le scénario",
+  quickScenarios: "Scénarios rapides",
+  predefinedScenarios: "Scénarios prédéfinis",
+  projectedOutcomes: "Résultats projetés",
+  efficiency: "Efficacité",
+  ordersPerStaff: "commandes/personnel",
+  fixedAtPeople: "Fixé à 8 personnes",
+  orderForecast: "Prévision des commandes",
+  sevenDayOrderProjection: "Projection des commandes sur 7 jours",
+  forecastedOrders: "Commandes prévues",
+  baseOrders: "Commandes de base",
+  applyScenario: "Appliquer le scénario",
+
+  // What-If Events
+  none: "Aucun",
+  localFestival: "Festival local",
+  sportsGame: "Match sportif",
+  concert: "Concert",
+  wedding: "Mariage",
+
+  // What-If Weather  
+  normal: "Normal",
+  sunnyHot: "Ensoleillé et chaud",
+  cold: "Froid",
+  perfect: "Parfait",
+
+  // What-If Predefined Scenarios
+  festivalWeekend: "Week-end de festival",
+  stormyDay: "Jour d'orage",
+  festivalWeekendDesc: "Événement de festival local, temps parfait, augmentation du marketing de 800$",
+  stormyDayDesc: "Temps orageux, pas d'événements, réduction des prix de 10%, augmentation du marketing de 300$",
+  sportsGameDesc: "Grande journée de match, temps ensoleillé, augmentation du marketing de 600$",
+
+  // Days of week
+  sun: "Dim",
+  mon: "Lun",
+  tue: "Mar",
+  wed: "Mer",
+  thu: "Jeu",
+  fri: "Ven",
+  sat: "Sam",
 
   // Weather conditions
   sunny: "Ensoleillé",

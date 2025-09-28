@@ -20,8 +20,10 @@ import {
   AreaChart,
   Area
 } from 'recharts';
+import { useTranslations } from '../i18n';
 
 const WhatIfSimulator: React.FC = () => {
+  const t = useTranslations();
   const [scenario, setScenario] = useState({
     priceChange: 0,
     marketingBudget: 0,
@@ -31,25 +33,24 @@ const WhatIfSimulator: React.FC = () => {
 
   const [results, setResults] = useState<any>(null);
   
-
   // Predefined events with their impact levels
   const predefinedEvents = [
-    { name: 'None', value: '', impact: 0, description: 'No special events' },
-    { name: 'Local Festival', value: 'festival', impact: 2, description: 'Community festival increases foot traffic' },
-    { name: 'Sports Game', value: 'sports', impact: 1.5, description: 'Big game day brings crowds' },
-    { name: 'Concert', value: 'concert', impact: 1.8, description: 'Music event nearby' },
-    { name: 'Holiday', value: 'holiday', impact: 1.3, description: 'Public holiday celebration' },
-    { name: 'Wedding', value: 'wedding', impact: 0.8, description: 'Private event nearby' }
+    { name: t.none, value: '', impact: 0, description: 'No special events' },
+    { name: t.localFestival, value: 'festival', impact: 2, description: 'Community festival increases foot traffic' },
+    { name: t.sportsGame, value: 'sports', impact: 1.5, description: 'Big game day brings crowds' },
+    { name: t.concert, value: 'concert', impact: 1.8, description: 'Music event nearby' },
+    { name: t.holiday, value: 'holiday', impact: 1.3, description: 'Public holiday celebration' },
+    { name: t.wedding, value: 'wedding', impact: 0.8, description: 'Private event nearby' }
   ];
 
   // Predefined weather states with their impact levels
   const predefinedWeather = [
-    { name: 'Normal', value: '', impact: 0, description: 'Typical weather conditions' },
-    { name: 'Sunny & Hot', value: 'sunny', impact: 1.2, description: 'Great weather increases outdoor dining' },
-    { name: 'Rainy', value: 'rainy', impact: 0.7, description: 'Rain reduces foot traffic' },
-    { name: 'Stormy', value: 'stormy', impact: 0.5, description: 'Severe weather limits customers' },
-    { name: 'Cold', value: 'cold', impact: 0.8, description: 'Cold weather affects outdoor seating' },
-    { name: 'Perfect', value: 'perfect', impact: 1.4, description: 'Ideal weather for dining out' }
+    { name: t.normal, value: '', impact: 0, description: 'Typical weather conditions' },
+    { name: t.sunnyHot, value: 'sunny', impact: 1.2, description: 'Great weather increases outdoor dining' },
+    { name: t.rainy, value: 'rainy', impact: 0.7, description: 'Rain reduces foot traffic' },
+    { name: t.stormy, value: 'stormy', impact: 0.5, description: 'Severe weather limits customers' },
+    { name: t.cold, value: 'cold', impact: 0.8, description: 'Cold weather affects outdoor seating' },
+    { name: t.perfect, value: 'perfect', impact: 1.4, description: 'Ideal weather for dining out' }
   ];
 
   const generateForecastData = (baseOrders: number, scenario: any) => {
@@ -179,7 +180,7 @@ const WhatIfSimulator: React.FC = () => {
         <div className="search-filter-left">
           <button className="control-button">
             <Clock className="nav-icon" />
-            Today
+            {t.today}
           </button>
           <button className="control-button">
             <Target className="nav-icon" />
@@ -191,7 +192,7 @@ const WhatIfSimulator: React.FC = () => {
         </div>
         <button className="add-button" onClick={calculateScenario}>
           <Calculator className="nav-icon" />
-          Calculate Scenario
+          {t.calculateScenario}
         </button>
       </div>
 
@@ -201,8 +202,8 @@ const WhatIfSimulator: React.FC = () => {
         <div className="simulator-card">
           <div className="card-header">
             <div className="card-title-section">
-              <div className="card-subtitle">Simulation Parameters</div>
-              <h2 className="card-title">What-If Scenarios</h2>
+              <div className="card-subtitle">{t.simulationParameters}</div>
+              <h2 className="card-title">{t.whatIfScenarios}</h2>
             </div>
           </div>
           
@@ -211,7 +212,7 @@ const WhatIfSimulator: React.FC = () => {
               <div className="parameter-item">
                 <label className="parameter-label">
                   <DollarSign className="parameter-icon" />
-                  Price Change
+                  {t.priceChange}
                 </label>
                 <input 
                   type="number" 
@@ -226,7 +227,7 @@ const WhatIfSimulator: React.FC = () => {
               <div className="parameter-item">
                 <label className="parameter-label">
                   <TrendingUp className="parameter-icon" />
-                  Marketing Budget
+                  {t.marketingBudget}
                 </label>
                 <input 
                   type="number" 
@@ -241,7 +242,7 @@ const WhatIfSimulator: React.FC = () => {
               <div className="parameter-item">
                 <label className="parameter-label">
                   <Target className="parameter-icon" />
-                  Events
+                  {t.events}
                 </label>
                 <select 
                   className="parameter-input"
@@ -257,7 +258,7 @@ const WhatIfSimulator: React.FC = () => {
               <div className="parameter-item">
                 <label className="parameter-label">
                   <TrendingDown className="parameter-icon" />
-                  Weather
+                  {t.weather}
                 </label>
                 <select 
                   className="parameter-input"

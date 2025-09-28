@@ -17,6 +17,7 @@ import {
   ComposedChart,
   Tooltip
 } from 'recharts';
+import { useTranslations } from '../i18n';
 
 // =============================================
 // Config
@@ -69,6 +70,7 @@ type ChartDatum = {
 // Component
 // =============================================
 const IngredientsManagement: React.FC = () => {
+  const t = useTranslations();
   const [loadingDaily, setLoadingDaily] = useState(false);
   const [loadingWeekly, setLoadingWeekly] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -239,25 +241,25 @@ const IngredientsManagement: React.FC = () => {
           <div className="search-filter-left">
             <button className="control-button">
               <Calendar className="nav-icon" />
-              Today
+              {t.today}
             </button>
             <button className="control-button">
               <Filter className="nav-icon" />
             </button>
             <div className="search-input-group">
               <Search className="nav-icon" />
-              <input type="text" placeholder="Q Search" />
+              <input type="text" placeholder={t.searchPlaceholder} />
             </div>
           </div>
           <button className="add-button" disabled>
             <Plus className="nav-icon" />
-            Add New Items +
+            {t.addNewItemsPlus}
           </button>
         </div>
 
         {(error) && (
           <div className="status-bar">
-            <span className="error-text">Error: {error}</span>
+            <span className="error-text">{t.error}: {error}</span>
           </div>
         )}
 
@@ -266,10 +268,10 @@ const IngredientsManagement: React.FC = () => {
             <table className="data-table">
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Kind</th>
-                  <th>Price Delta</th>
-                  <th>Stock</th>
+                  <th>{t.name}</th>
+                  <th>{t.kind}</th>
+                  <th>{t.priceDelta}</th>
+                  <th>{t.stock}</th>
                   <th></th>
                 </tr>
               </thead>
@@ -306,7 +308,7 @@ const IngredientsManagement: React.FC = () => {
                 {!overallLoading && tableData.length === 0 && (
                   <tr>
                     <td colSpan={5} style={{ textAlign: 'center', padding: '1rem' }}>
-                      No ingredients available.
+                      {t.noIngredientsAvailable}
                     </td>
                   </tr>
                 )}
@@ -327,7 +329,7 @@ const IngredientsManagement: React.FC = () => {
 
               <div className="modal-body">
                 <div className="modal-info">
-                  <p>Predicted Average Need</p>
+                  <p>{t.predictedAverageNeed}</p>
                   <div className="modal-metric">
                     {(() => {
                       const dataSet = dailyChartData;
@@ -337,7 +339,7 @@ const IngredientsManagement: React.FC = () => {
                         return acc + v;
                       }, 0);
                       const avg = sum / dataSet.length;
-                      return `${avg.toFixed(2)} units/day`;
+                      return `${avg.toFixed(2)} ${t.unitsPerDay}`;
                     })()}
                   </div>
                 </div>
@@ -347,13 +349,13 @@ const IngredientsManagement: React.FC = () => {
                     className={`tab-button ${activeTab === 'Daily' ? 'active' : ''}`}
                     onClick={() => setActiveTab('Daily')}
                   >
-                    Daily
+                    {t.daily}
                   </button>
                   <button
                     className={`tab-button ${activeTab === 'Weekly' ? 'active' : ''}`}
                     onClick={() => setActiveTab('Weekly')}
                   >
-                    Weekly
+                    {t.weekly}
                   </button>
                 </div>
               </div>
@@ -377,7 +379,7 @@ const IngredientsManagement: React.FC = () => {
                       tickFormatter={(v) => `${v}`}
                     />
                     <Tooltip
-                      formatter={(value: any) => [Number(value).toFixed(2), 'Predicted']}
+                      formatter={(value: any) => [Number(value).toFixed(2), t.predicted]}
                       labelFormatter={label => `${activeTab} ${label}`}
                     />
                     <Bar dataKey="solidOrange" fill="#E23A00" maxBarSize={18} />
@@ -398,7 +400,7 @@ const IngredientsManagement: React.FC = () => {
                 </ResponsiveContainer>
                 {usageData.length === 0 && (
                   <div className="empty-chart-msg">
-                    No prediction data for this ingredient.
+                    {t.noPredictionData}
                   </div>
                 )}
               </div>
