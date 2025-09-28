@@ -10,8 +10,8 @@ import {
   AlertTriangle
 } from 'lucide-react';
 import { 
-  LineChart,
-  Line,
+  // LineChart,
+  // Line,
   XAxis, 
   YAxis, 
   CartesianGrid, 
