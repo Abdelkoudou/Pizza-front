@@ -9,6 +9,7 @@ import {
   Calculator
 } from 'lucide-react';
 import logo from '../logo.png';
+import { useTranslations } from '../i18n';
 
 interface SidebarProps {
   activePage: string;
@@ -16,6 +17,8 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ activePage, onPageChange }) => {
+  const t = useTranslations();
+  
   return (
     <div className="sidebar">
       <div className="sidebar-header">
@@ -31,46 +34,46 @@ const Sidebar: React.FC<SidebarProps> = ({ activePage, onPageChange }) => {
             onClick={() => onPageChange('dashboard')}
           >
             <LayoutGrid className="nav-icon" />
-            Dashboard
+            {t.dashboard}
           </button>
           <button 
             className={`nav-item ${activePage === 'menu' ? 'active' : ''}`}
             onClick={() => onPageChange('menu')}
           >
             <Pizza className="nav-icon" />
-            Menu
+            {t.menu}
           </button>
           <button 
             className={`nav-item ${activePage === 'ingredients' ? 'active' : ''}`}
             onClick={() => onPageChange('ingredients')}
           >
             <Carrot className="nav-icon" />
-            Ingredients
+            {t.ingredients}
           </button>
           <button 
             className={`nav-item ${activePage === 'staff' ? 'active' : ''}`}
             onClick={() => onPageChange('staff')}
           >
             <Users className="nav-icon" />
-            Staff
+            {t.staff}
           </button>
           <button 
             className={`nav-item ${activePage === 'what-if' ? 'active' : ''}`}
             onClick={() => onPageChange('what-if')}
           >
             <Calculator className="nav-icon" />
-            What-If Simulator
+            {t.whatIfSimulator}
           </button>
         </div>
         
         <div className="sidebar-nav-footer">
           <button className="nav-item">
             <Settings className="nav-icon" />
-            Settings
+            {t.settings}
           </button>
           <button className="nav-item logout">
             <LogOut className="nav-icon" />
-            Log Out
+            {t.logOut}
           </button>
 
         </div>

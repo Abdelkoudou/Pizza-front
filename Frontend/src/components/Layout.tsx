@@ -1,6 +1,7 @@
 import React from 'react';
 import Sidebar from './Sidebar';
 import Header from './Header';
+import { useTranslations } from '../i18n';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -9,20 +10,22 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children, activePage, onPageChange }) => {
+  const t = useTranslations();
+  
   const getPageTitle = (page: string) => {
     switch (page) {
       case 'dashboard':
-        return 'Dashboard';
+        return t.dashboardTitle;
       case 'menu':
-        return 'Menu Management';
+        return t.menuManagement;
       case 'staff':
-        return 'Staff Management';
+        return t.staffManagement;
       case 'ingredients':
-        return 'Ingredient Management';
+        return t.ingredientManagement;
       case 'what-if':
-        return 'What-If Simulator';
+        return t.whatIfSimulatorTitle;
       default:
-        return 'Dashboard';
+        return t.dashboardTitle;
     }
   };
 
