@@ -81,6 +81,8 @@ export interface Translations {
   rainy: string;
   cloudy: string;
   stormy: string;
+  cold: string;
+  perfect: string;
 
   // Events
   normalDay: string;
@@ -157,6 +159,16 @@ export interface Translations {
   viewDetailsText: string;
   addNewText: string;
   getTodaysForecast: string;
+  coldWeatherAffectsOutdoorSeating: string;
+  idealWeatherForDiningOut: string;
+  
+  // WhatIfSimulator UI elements
+  calculateScenario: string;
+  scenarioSearch: string;
+  whatIfScenarios: string;
+  quickScenarios: string;
+  applyScenario: string;
+  simulationParameters: string;
 }
 
 export const englishTranslations: Translations = {
@@ -242,6 +254,8 @@ export const englishTranslations: Translations = {
   rainy: "Rainy",
   cloudy: "Cloudy",
   stormy: "Stormy",
+  cold: "Cold",
+  perfect: "Perfect",
 
   // Events
   normalDay: "Normal Day",
@@ -318,6 +332,16 @@ export const englishTranslations: Translations = {
   viewDetailsText: "View Details",
   addNewText: "Add New",
   getTodaysForecast: "Get Today's Forecast",
+  coldWeatherAffectsOutdoorSeating: "Cold weather affects outdoor seating",
+  idealWeatherForDiningOut: "Ideal weather for dining out",
+  
+  // WhatIfSimulator UI elements
+  calculateScenario: "Calculate Scenario",
+  scenarioSearch: "Scenario Search",
+  whatIfScenarios: "What-If Scenarios",
+  quickScenarios: "Quick Scenarios",
+  applyScenario: "Apply Scenario",
+  simulationParameters: "Simulation Parameters",
 };
 
 export const frenchTranslations: Translations = {
@@ -403,6 +427,8 @@ export const frenchTranslations: Translations = {
   rainy: "Pluvieux",
   cloudy: "Nuageux",
   stormy: "Orageux",
+  cold: "Froid",
+  perfect: "Parfait",
 
   // Events
   normalDay: "Journée normale",
@@ -479,4 +505,14 @@ export const frenchTranslations: Translations = {
   viewDetailsText: "Voir les détails",
   addNewText: "Ajouter nouveau",
   getTodaysForecast: "Obtenir les prévisions d'aujourd'hui",
+  coldWeatherAffectsOutdoorSeating: "Le froid affecte les places en terrasse",
+  idealWeatherForDiningOut: "Météo idéale pour manger dehors",
+  
+  // WhatIfSimulator UI elements
+  calculateScenario: "Calculer le scénario",
+  scenarioSearch: "Recherche de scénario",
+  whatIfScenarios: "Scénarios What-If",
+  quickScenarios: "Scénarios rapides",
+  applyScenario: "Appliquer le scénario",
+  simulationParameters: "Paramètres de simulation",
 };
