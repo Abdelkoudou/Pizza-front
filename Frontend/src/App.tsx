@@ -6,6 +6,7 @@ import MenuManagement from './pages/MenuManagement';
 import StaffManagement from './pages/StaffManagement';
 import IngredientsManagement from './pages/IngredientsManagement';
 import WhatIfSimulator from './pages/WhatIfSimulator';
+import { LanguageProvider } from './i18n';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('dashboard');
@@ -28,11 +29,13 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <Layout activePage={currentPage} onPageChange={setCurrentPage}>
-        {renderPage()}
-      </Layout>
-    </div>
+    <LanguageProvider>
+      <div className="App">
+        <Layout activePage={currentPage} onPageChange={setCurrentPage}>
+          {renderPage()}
+        </Layout>
+      </div>
+    </LanguageProvider>
   );
 }
 

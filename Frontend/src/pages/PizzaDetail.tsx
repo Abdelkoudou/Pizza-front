@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { ArrowLeft, Edit, Pizza as PizzaIcon } from 'lucide-react';
 import pizzaImage from '../pizza image.png';
 import {
@@ -11,7 +11,7 @@ import {
   AreaChart
 } from 'recharts';
 import { getPizzaByName } from '../utils/pizzaData';
-import { apiService, dataUtils } from '../utils/api'; // still used for fallback ingredient mapping helpers
+// import { apiService, dataUtils } from '../utils/api'; // still used for fallback ingredient mapping helpers
 
 interface PizzaDetailProps {
   pizza: {
@@ -86,7 +86,7 @@ const PizzaDetail: React.FC<PizzaDetailProps> = ({
     buildIngredientForecasts();
   }, [pizza.name, ingredientPredictionsTomorrow]);
 
-  const buildForecastData = () => {
+  const buildForecastData = useCallback(() => {
     setLocalLoading(true);
     try {
       if (activeTab === 'Daily') {
@@ -141,9 +141,9 @@ const PizzaDetail: React.FC<PizzaDetailProps> = ({
     } finally {
       setLocalLoading(false);
     }
-  };
+  }, [activeTab, pizza.variantKeys, precomputedDailyRecords, precomputedWeeklyRecords]);
 
-  const buildIngredientForecasts = () => {
+  const buildIngredientForecasts = useCallback(() => {
     // Use provided ingredient predictions for tomorrow if available
     if (!ingredientPredictionsTomorrow) {
       setIngredientForecasts([]);
@@ -190,7 +190,7 @@ const PizzaDetail: React.FC<PizzaDetailProps> = ({
     }
 
     setIngredientForecasts(list);
-  };
+  }, [pizza.name, pizza.image, ingredientPredictionsTomorrow]);
 
   const averageForecast = useMemo(() => {
     if (!forecastData.length) return null;

@@ -241,6 +241,39 @@ input, textarea, select {
   font-weight: 500;
 }
 
+.language-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: transparent;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #666;
+}
+
+.language-toggle-btn:hover {
+  border-color: #E23A00;
+  background-color: #fff5f3;
+  color: #E23A00;
+}
+
+.language-toggle-btn .nav-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.language-code {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
 .add-button {
   background-color: #E23A00;
   color: white;
