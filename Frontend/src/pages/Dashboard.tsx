@@ -68,10 +68,11 @@ const Dashboard: React.FC = () => {
           return dataUtils.formatDateForAPI(date);
         });
         predictions = await apiService.getWeeklyPredictions(weeks);
-      } else { // Hourly
-        const timestamps = Array.from({length: 24}, (_, i) => {
+      } else { // Hourly (09h–23h)
+        const timestamps = Array.from({ length: 15 }, (_, i) => {
           const date = new Date();
-          date.setHours(i);
+          date.setHours(i + 9); // start at 9h
+          date.setMinutes(0, 0, 0);
           return date.toISOString();
         });
         predictions = await apiService.getHourlyPredictions(timestamps, sampleContext);
@@ -92,9 +93,9 @@ const Dashboard: React.FC = () => {
         
         return {
           [orderTimeframe === 'Daily' ? 'day' : orderTimeframe === 'Weekly' ? 'week' : 'hour']: timeLabel,
-          pizza: Math.round(pred.predicted_orders * 0.7), // Assume 70% pizza orders
-          bar: Math.round(pred.predicted_orders * 0.2),   // Assume 20% bar orders  
-          others: Math.round(pred.predicted_orders * 0.1) // Assume 10% other orders
+          pizza: Math.round(pred.predicted_orders * 0.7), 
+          bar: Math.round(pred.predicted_orders * 0.2),  
+          others: Math.round(pred.predicted_orders * 0.1) 
         };
       });
 
@@ -159,17 +160,14 @@ const Dashboard: React.FC = () => {
     }
   };
 
-  // Update order timeframe and reload data
   const handleOrderTimeframeChange = (timeframe: string) => {
     setOrderTimeframe(timeframe);
   };
 
-  // Update ingredients timeframe and reload data
   const handleIngredientsTimeframeChange = (timeframe: string) => {
     setIngredientsTimeframe(timeframe);
   };
 
-  // Most Selling Items Data for Pie Chart
   const mostSellingData = [
     { name: 'Pizza', value: 70, color: '#E23A00' },
     { name: 'Hot Drinks', value: 10, color: '#FF4500' },
@@ -252,8 +250,16 @@ const Dashboard: React.FC = () => {
                 <YAxis 
                   axisLine={false} 
                   tickLine={false} 
-                  domain={orderTimeframe === 'Hourly' ? [0, 15000] : orderTimeframe === 'Daily' ? [0, 70000] : [0, 200000]} 
-                  ticks={orderTimeframe === 'Hourly' ? [0, 5000, 10000, 15000] : orderTimeframe === 'Daily' ? [0, 20000, 40000, 60000, 80000] : [0, 50000, 100000, 150000, 200000]} 
+                  domain={
+                    orderTimeframe === 'Hourly' ? [0, 50] : 
+                    orderTimeframe === 'Daily' ? [0, 300] : 
+                    [0, 2000]
+                  }
+                  ticks={
+                    orderTimeframe === 'Hourly' ? [0, 10, 20, 30, 40, 50] : 
+                    orderTimeframe === 'Daily' ? [0, 50, 100, 150, 200, 250, 300] : 
+                    [0, 500, 1000, 1500, 2000]
+                  }
                 />
                 <Tooltip 
                   formatter={(value: any, name: string) => [
@@ -269,21 +275,21 @@ const Dashboard: React.FC = () => {
                   }}
                 />
                 <Area 
-                  type="monotone" 
+                  type="natural" 
                   dataKey="pizza" 
                   stroke="#E23A00" 
                   fill="url(#pizzaGradient)" 
                   strokeWidth={2}
                 />
                 <Area 
-                  type="monotone" 
+                  type="natural" 
                   dataKey="bar" 
                   stroke="#FF4500" 
                   fill="url(#barGradient)" 
                   strokeWidth={2}
                 />
                 <Area 
-                  type="monotone" 
+                  type="natural" 
                   dataKey="others" 
                   stroke="#FF6B35" 
                   fill="url(#othersGradient)" 
@@ -376,14 +382,10 @@ const Dashboard: React.FC = () => {
                     boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
                   }}
                 />
-                {/* Past days: solid orange bar */}
                 <Bar dataKey="solidOrange" fill="#E23A00" radius={[0, 0, 0, 0]} maxBarSize={8} />
-                {/* Past days: dotted gray bar */}
                 <Bar dataKey="dottedGray" fill="url(#dottedGray)" radius={[0, 0, 0, 0]} maxBarSize={8} />
-                {/* Future days: dotted orange bar */}
                 <Bar dataKey="dottedOrange" fill="url(#dottedOrange)" radius={[0, 0, 0, 0]} maxBarSize={8} />
                 
-                {/* Define patterns for dotted bars */}
                 <defs>
                   <pattern id="dottedGray" patternUnits="userSpaceOnUse" width="4" height="4">
                     <rect width="4" height="4" fill="#E0E0E0"/>
@@ -413,42 +415,20 @@ const Dashboard: React.FC = () => {
               <PieChart>
                 <Pie
                   data={mostSellingData}
+                  dataKey="value"
+                  nameKey="name"
                   cx="50%"
                   cy="50%"
-                  innerRadius={60}
                   outerRadius={120}
-                  paddingAngle={2}
-                  dataKey="value"
+                  label
                 >
                   {mostSellingData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
                 </Pie>
-                <Tooltip 
-                  formatter={(value: any) => [`${value}%`, 'Percentage']}
-                  labelStyle={{ color: '#333' }}
-                  contentStyle={{ 
-                    backgroundColor: '#fff', 
-                    border: '1px solid #e9ecef', 
-                    borderRadius: '8px',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-                  }}
-                />
+                <Tooltip />
               </PieChart>
             </ResponsiveContainer>
-          </div>
-
-          <div className="pie-legend">
-            {mostSellingData.map((item, index) => (
-              <div key={index} className="legend-item">
-                <div 
-                  className="legend-dot" 
-                  style={{ backgroundColor: item.color }}
-                ></div>
-                <span>{item.name}</span>
-                <span className="legend-percentage">{item.value}%</span>
-              </div>
-            ))}
           </div>
         </div>
       </div>
